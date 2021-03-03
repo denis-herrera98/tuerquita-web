@@ -1,28 +1,53 @@
-@import './_variables.scss';
+@use './variables.scss';
 
 .description__section {
+
     display: flex;
     min-height: calc(100vh - 65px);
     align-items: center;
     flex-direction: column;
     text-align: center;
 
-    .titles {
-        margin: 30px 0px 30px 0px;
+    .logo {
+        margin-bottom: 50px;
     }
-
 
     .short__description {
 
         h3 {
-            color: $secondary-color;
+
+            margin-top: auto;
+            margin-bottom: 50px;
+            color: variables.$secondary-color;
+
         }
 
         p {
             font-family: Roboto;
             font-size: 1.3rem;
         }
-
     }
 }
+
+.commands__section {
+
+    display: flex;
+    background: variables.$primary-color;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    min-height: 100vh;
+
+    p {
+        text-align: start;
+        font-family: Roboto;
+    }
+
+
+}
+
+.titles {
+    margin: 30px 0px 30px 0px;
+}
+
 

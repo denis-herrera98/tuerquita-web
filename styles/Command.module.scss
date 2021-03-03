@@ -1,0 +1,48 @@
+@use './variables.scss';
+
+.arrow__up {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid variables.$secondary-color;
+    margin-right: 25px;
+    cursor: pointer;
+}
+
+.arrow__down {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid variables.$secondary-color;
+    margin-right: 25px;
+    cursor: pointer;
+}
+
+
+.command__container {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0 50px 0;
+
+    .command__label {
+
+        height: 50px;
+        background: variables.$base-color;
+        border-radius: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        p {
+            text-align: start;
+            font-size: 18px;
+            font-family: Bungee Inline;
+            margin: 0 auto 0 1.5rem;
+
+        }
+    }
+}
+
+
