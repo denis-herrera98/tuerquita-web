@@ -29,8 +29,8 @@ const Home = () => {
             <Row className="justify-content-center">
               <Col xs="6">
                 <p>
-                  Este bot de discord te ayuda a buscar invocadores con lo
-                  cuales jugar entre todos los servidores de discord en el que
+                  Este bot de discord te ayuda a buscar invocadores con los
+                  cuales jugar entre todos los servidores de Discord en él que
                   esté
                 </p>
               </Col>
@@ -45,23 +45,24 @@ const Home = () => {
             <h2>Commandos</h2>
             <Command
               label="t! add-region"
-              description="Añade una region al servidor de discord. Si se añade NA por ejemplo, se notificará al sevidor cuando alguien perteneciente a NA busque equipo"
+              description="Añade una región al servidor de discord. Si se añade NA por ejemplo, se notificará al sevidor cuando alguien perteneciente a NA busque equipo"
             />
             <Command
               label="t! search "
               description="Notifica a todas los servidores que alguien está buscando equipo "
             />
             <Command
-              label="t! add "
-              description="Vincula tu cuenta de League of Legends con tu cuenta de discord. Con esto se podrá mencionar a un usuario de discord en los comandos"
-            />
-            <Command
               label="t! delete-region"
-              description="Elimina la region del servidor de discord"
+              description="Elimina la región del servidor de discord"
             />
             <Command
               label="t! regions"
               description="Muestra todas las regiones"
+            />
+
+            <Command
+              label="t! add "
+              description="Vincula tu cuenta de League of Legends con tu cuenta de discord. Con esto se podrá mencionar a un usuario de discord en los comandos"
             />
             <Command
               label="t! soloq"
