@@ -7,7 +7,7 @@ const Nav = () => {
     <nav className={navStyles.navbar}>
       <ul>
         <li>Tuerquita</li>
-        <li>
+        <li className={navStyles.command__bottom}>
           <ScrollLink
             activeClass="active"
             to="commands__section"

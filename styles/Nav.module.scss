@@ -16,9 +16,17 @@
         height: 100%;
         align-items: center;
 
+        .command__bottom {
+
+            cursor: pointer;
+
+            @media (max-width: 620px){
+                display: none;
+            }
+        }
+
         li {
             margin: 0px 1.5rem 0px 1.5rem;
-            cursor: pointer;
         }
 
         li:first-child {
@@ -43,4 +51,8 @@
 .text__decoration__none {
     text-decoration: none;
     color: white;
+
+    &:hover {
+        color: white;
+    }
 }

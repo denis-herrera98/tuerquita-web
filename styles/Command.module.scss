@@ -37,11 +37,17 @@
 
         p {
             text-align: start;
-            font-size: 18px;
+            font-size: 1.3rem;
             font-family: Bungee Inline;
             margin: 0 auto 0 1.5rem;
 
         }
+    }
+
+    .command__description {
+        padding-left: 20px;
+        font-size: 1.3rem;
+
     }
 }
 

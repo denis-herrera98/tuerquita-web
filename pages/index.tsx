@@ -12,7 +12,7 @@ const Home = () => {
           id="description__section"
           className={homeStyles.description__section}
         >
-          <div className={homeStyles.titles}>
+          <div>
             <h2>Tuerquita</h2>
             <h2>Bot de League of Legends</h2>
           </div>
@@ -29,9 +29,9 @@ const Home = () => {
             <Row className="justify-content-center">
               <Col xs="6">
                 <p>
-                  Este bot de discord te ayuda a buscar invocadores con los
-                  cuales jugar Este bot de discord te ayuda a buscar invocadores
-                  con los invocadores con los cuales jugar
+                  Este bot de discord te ayuda a buscar invocadores con lo
+                  cuales jugar entre todos los servidores de discord en el que
+                  esté
                 </p>
               </Col>
             </Row>
@@ -43,12 +43,38 @@ const Home = () => {
         <Container>
           <div className={homeStyles.titles}>
             <h2>Commandos</h2>
-            <Command label="hijos de remil puta" description=" cacacacaca " />
             <Command
-              label="t! add <region> <summoner>"
-              description=" cacacacaca "
+              label="t! add-region"
+              description="Añade una region al servidor de discord. Si se añade NA por ejemplo, se notificará al sevidor cuando alguien perteneciente a NA busque equipo"
             />
-            <Command label="hijos de remil puta" description=" cacacacaca " />
+            <Command
+              label="t! search "
+              description="Notifica a todas los servidores que alguien está buscando equipo "
+            />
+            <Command
+              label="t! add "
+              description="Vincula tu cuenta de League of Legends con tu cuenta de discord. Con esto se podrá mencionar a un usuario de discord en los comandos"
+            />
+            <Command
+              label="t! delete-region"
+              description="Elimina la region del servidor de discord"
+            />
+            <Command
+              label="t! regions"
+              description="Muestra todas las regiones"
+            />
+            <Command
+              label="t! soloq"
+              description="Muestra sus estadísticas de soloq"
+            />
+            <Command
+              label="t! flex"
+              description="Muestra las estadísticas de flex"
+            />
+            <Command
+              label="t! lastmatch "
+              description="Muestra sus estadísticas del juego más reciente"
+            />
           </div>
         </Container>
       </div>
