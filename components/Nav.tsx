@@ -20,9 +20,13 @@ const Nav = () => {
           </ScrollLink>
         </li>
         <li>
-          <Link href="/blog/hello-world">
-            <a className={navStyles.text__decoration__none}> GET TUERQUITA </a>
-          </Link>
+          <a
+            target="_blank"
+            href="https://discord.com/api/oauth2/authorize?client_id=681661025057243177&permissions=1879333904&scope=bot"
+            className={navStyles.text__decoration__none}
+          >
+            GET TUERQUITA
+          </a>
         </li>
       </ul>
     </nav>
