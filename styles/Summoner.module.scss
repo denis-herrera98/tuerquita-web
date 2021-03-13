@@ -1,0 +1,81 @@
+@use './variables.scss';
+
+.container {
+    background-color: variables.$summoner-background;
+    margin-top: 2rem;
+    min-width: 465px;
+    border-radius: 50px;
+    display: flex;
+    align-items: flex-start;
+    filter: drop-shadow(0px 2px 2px black);
+
+    a, p {
+        margin-bottom: 1rem;
+        font-family: Roboto;
+        margin-left: 2rem;
+        margin-top: 1rem;
+        font-size: 1.4rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    .profile__picture {
+        border-radius:  50px;
+    }
+
+    .summoner__info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .correct {
+        cursor: pointer;
+        border-style: solid;
+        border-color: variables.$correct-color;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .lines {
+        display: inline-block;
+        transform: rotate(42deg);
+        height: 20px;
+        width: 15px;
+        margin-bottom: 5px;
+        border-bottom: 5px solid variables.$correct-color;
+        border-right: 5px solid variables.$correct-color;
+    }
+
+
+    .incorrect{
+        cursor: pointer;
+        margin-right: 15px;
+        font-family: Roboto;
+        border-style: solid;
+        color: variables.$error-color;
+        border-color: variables.$error-color;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 25px;
+    }
+
+    .options__container {
+        justify-content: flex-end;
+        margin-bottom: 1rem;
+        margin-right: -60px;
+
+    }
+
+
+
+}
