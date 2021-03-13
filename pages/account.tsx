@@ -7,6 +7,8 @@ const SelectAccount = () => {
     <Container className={accountStyles.container}>
       <p> SELECCIONE SU CUENTA</p>
       <Summoner />
+
+      <Summoner />
     </Container>
   );
 };

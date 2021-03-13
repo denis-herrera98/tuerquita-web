@@ -5,53 +5,46 @@ import { Row, Col, Container } from "react-bootstrap";
 const Summoner = () => {
   return (
     <div className={summonerStyles.container}>
-      <Image
-        className={summonerStyles.profile__picture}
-        src="http://ddragon.leagueoflegends.com/cdn/10.16.1/img/profileicon/3182.png"
-        alt="ProfilePicture"
-        width={100}
-        height={100}
-      />
-
-      <div className={summonerStyles.summoner__info}>
-        <a target="_blank" href="">
-          Don Denis, level 562
-        </a>
-
-        <Row>
-          <Col xs={4}>
-            <p> Soloq </p>
-          </Col>
-          <Col>
+      <div className={summonerStyles.grid}>
+        <div className={summonerStyles.profile__picture}>
+          <Image
+            className={summonerStyles.profile__picture}
+            src="http://ddragon.leagueoflegends.com/cdn/10.16.1/img/profileicon/3182.png"
+            alt="ProfilePicture"
+            width={100}
+            height={100}
+          />
+        </div>
+        <div className={summonerStyles.name}>
+          <a target="_blank" href="">
+            Don asd
+          </a>
+          <p className={summonerStyles.subtitle}> Level 231</p>
+        </div>
+        <div className={summonerStyles.ranked__data}>
+          <div className={summonerStyles.ranked__column}>
             <Image
               className={summonerStyles.emblem}
               src="/emblems/Diamond.png"
               alt="emblem"
-              width={45}
-              height={52}
+              width={40}
+              height={45}
             />
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={4}>
-            <p> Flex </p>
-          </Col>
-          <Col>
+            <p> Soloq </p>
+          </div>
+
+          <div className={summonerStyles.ranked__column}>
             <Image
               className={summonerStyles.emblem}
-              src="/emblems/Challenger.png"
+              src="/emblems/Diamond.png"
               alt="emblem"
-              width={45}
-              height={52}
+              width={40}
+              height={45}
             />
-          </Col>
-        </Row>
-        <Row className={summonerStyles.options__container}>
-          <div className={summonerStyles.incorrect}>X</div>
-          <div className={summonerStyles.correct}>
-            <div className={summonerStyles.lines}></div>
+            <p> Flex </p>
           </div>
-        </Row>
+        </div>
+        <div className={summonerStyles.incorrect}>X</div>
       </div>
     </div>
   );
