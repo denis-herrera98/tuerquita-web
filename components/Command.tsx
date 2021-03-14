@@ -8,8 +8,6 @@ interface IProps {
 }
 
 const Command = ({ label, description }: IProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <div className={commandStyles.command__container}>
       <Col md="8" xs="10" lg="6">

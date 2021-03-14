@@ -59,7 +59,6 @@ const Home = () => {
               label="t! regions"
               description="Muestra todas las regiones"
             />
-
             <Command
               label="t! add "
               description="Vincula tu cuenta de League of Legends con tu cuenta de discord. Con esto se podrá mencionar a un usuario de discord en los comandos"

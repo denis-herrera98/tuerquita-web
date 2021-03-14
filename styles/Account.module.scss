@@ -1,13 +1,26 @@
 @use './variables.scss';
 
 .container {
+    padding-top: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 
-    p {
-        font-size: 1.5rem;
+    .search__field {
+        background: variables.$msg-response;
+        height: 55px;
+        border-radius: 20px;
+        margin: 3rem 0;
     }
+
+    .region__selector {
+        width: 100px;
+        background: variables.$msg-sent;
+        height: 100%;
+        border-radius: 20px 0px 0px 20px;
+    }
+
+
 }
 

@@ -1,6 +1,13 @@
 @use './variables.scss';
 
+
+
 .navbar {
+
+    a:hover {
+        color: white;
+    }
+
     height: 65px;
     background: variables.$primary-color;
     font-size: 24px;
@@ -38,6 +45,7 @@
             background-color: variables.$secondary-color;
             height: 100%;
             margin: 0px;
+            margin-left: 1.5rem;
             display: flex;
             align-items: center;
             padding: 0px 15px 0px 15px;
@@ -46,13 +54,4 @@
     }
 
 
-}
-
-.text__decoration__none {
-    text-decoration: none;
-    color: white;
-
-    &:hover {
-        color: white;
-    }
 }

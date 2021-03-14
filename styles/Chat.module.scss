@@ -1,0 +1,79 @@
+@use './variables.scss';
+
+.container {
+
+    display: flex;
+
+    .left__column {
+
+        padding-top: 2rem;
+        max-height: calc(100vh - 65px);
+        min-height: calc(100vh - 65px);
+        background: variables.$background-color;
+        width: 460px;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-shrink: 0;
+
+        > p {
+            font-family: Roboto;
+            padding: 1rem 2rem;
+        }
+    }
+
+    .chat__container {
+        padding: 2rem;
+        min-height: calc(100vh - 65px);
+        width: 100%;
+
+        .chat__background {
+            display: flex;
+            height: 100%;
+            align-content: flex-end;
+            align-items: flex-end;
+            flex-direction: column-reverse;
+            background: variables.$background-color;
+            border-radius: 40px;
+
+            .col__response {
+                margin-right: left;
+                justify-content: flex-start;
+                margin-right: auto;
+                display: flex;
+            }
+
+            .col__sent {
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            .text__field {
+                display: flex;
+                align-items: center;
+                padding-left: 2rem;
+                margin-top: 50px;
+                width: 100%;
+                font-family: Roboto;
+                align-self: flex-end;
+                border-radius: 40px;
+                height: 50px;
+                background: variables.$text-field-color;
+            }
+
+            .chat__bubble {
+                padding: .8rem 1rem;
+                margin: 1rem 1.5rem;
+                background: variables.$msg-sent;
+                border-radius: 20px;
+                font-family: Roboto;
+
+                &.response {
+                    background: variables.$msg-response;
+                }
+            }
+        }
+    }
+
+}

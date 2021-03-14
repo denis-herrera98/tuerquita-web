@@ -2,7 +2,15 @@ import summonerStyles from "../styles/Summoner.module.scss";
 import Image from "next/image";
 import { Row, Col, Container } from "react-bootstrap";
 
-const Summoner = () => {
+interface IProps {
+  name: string;
+  canDelete?: boolean;
+  leader?: boolean;
+  level: string;
+  emblem: string;
+}
+
+const Summoner = ({ name, canDelete, leader, level, emblem }: IProps) => {
   return (
     <div className={summonerStyles.container}>
       <div className={summonerStyles.grid}>
@@ -17,15 +25,15 @@ const Summoner = () => {
         </div>
         <div className={summonerStyles.name}>
           <a target="_blank" href="">
-            Don asd
+            {name}
           </a>
-          <p className={summonerStyles.subtitle}> Level 231</p>
+          <p className={summonerStyles.subtitle}> Level {level} </p>
         </div>
         <div className={summonerStyles.ranked__data}>
           <div className={summonerStyles.ranked__column}>
             <Image
               className={summonerStyles.emblem}
-              src="/emblems/Diamond.png"
+              src={`/emblems/${emblem}`}
               alt="emblem"
               width={40}
               height={45}
@@ -44,7 +52,8 @@ const Summoner = () => {
             <p> Flex </p>
           </div>
         </div>
-        <div className={summonerStyles.incorrect}>X</div>
+        {canDelete ? <div className={summonerStyles.incorrect}>X</div> : ""}
+        {leader ? <h5 className={summonerStyles.tag__leader}>LIDER</h5> : ""}
       </div>
     </div>
   );

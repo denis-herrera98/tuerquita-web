@@ -6,7 +6,11 @@ const Nav = () => {
   return (
     <nav className={navStyles.navbar}>
       <ul>
-        <li>Tuerquita</li>
+        <li>
+          <Link href="/">
+            <a>TUERQUITA</a>
+          </Link>
+        </li>
         <li className={navStyles.command__bottom}>
           <ScrollLink
             activeClass="active"
@@ -19,11 +23,16 @@ const Nav = () => {
             Comandos
           </ScrollLink>
         </li>
+
+        <li>
+          <Link href="/partys">
+            <a>PARTYS</a>
+          </Link>
+        </li>
         <li>
           <a
             target="_blank"
             href="https://discord.com/api/oauth2/authorize?client_id=681661025057243177&permissions=1879333904&scope=bot"
-            className={navStyles.text__decoration__none}
           >
             GET TUERQUITA
           </a>
