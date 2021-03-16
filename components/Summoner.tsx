@@ -4,13 +4,14 @@ import { Row, Col, Container } from "react-bootstrap";
 
 interface IProps {
   name: string;
+  soloq: string;
+  flex: string;
   canDelete?: boolean;
   leader?: boolean;
   level: string;
-  emblem: string;
 }
 
-const Summoner = ({ name, canDelete, leader, level, emblem }: IProps) => {
+const Summoner = ({ name, canDelete, leader, level, soloq, flex }: IProps) => {
   return (
     <div className={summonerStyles.container}>
       <div className={summonerStyles.grid}>
@@ -33,7 +34,9 @@ const Summoner = ({ name, canDelete, leader, level, emblem }: IProps) => {
           <div className={summonerStyles.ranked__column}>
             <Image
               className={summonerStyles.emblem}
-              src={`/emblems/${emblem}`}
+              src={`${
+                soloq ? `/emblems/${soloq}.png` : "/emblems/UNRANKED.png"
+              }`}
               alt="emblem"
               width={40}
               height={45}
@@ -44,7 +47,7 @@ const Summoner = ({ name, canDelete, leader, level, emblem }: IProps) => {
           <div className={summonerStyles.ranked__column}>
             <Image
               className={summonerStyles.emblem}
-              src="/emblems/Diamond.png"
+              src={`${flex ? `/emblems/${flex}.png` : "/emblems/UNRANKED.png"}`}
               alt="emblem"
               width={40}
               height={45}

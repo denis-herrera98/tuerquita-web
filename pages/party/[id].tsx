@@ -1,12 +1,10 @@
-import { useRouter } from "next/router";
+import { GetStaticPaths, GetStaticProps } from "next";
 import chatStyles from "../../styles/Chat.module.scss";
-import Summoner from "../../components/Summoner";
+import { getTeamById, getLastestTeams } from "../../handlers/lolapi";
+import SummonerComponentCreator from "../../logic/summoner";
 import { Col } from "react-bootstrap";
 
-const Party = () => {
-  const router = useRouter();
-  const { id } = router.query;
-
+const Party = ({ team }) => {
   return (
     <div className={chatStyles.container}>
       <div className={chatStyles.left__column}>
@@ -15,7 +13,7 @@ const Party = () => {
           minimo challengerlex, minimo challenger{" "}
         </p>
         <h4>TEAM</h4>
-        <Summoner name="Don Denis" level="232" emblem="Diamond.png" />
+        {SummonerComponentCreator(team)}
       </div>
       <div className={chatStyles.chat__container}>
         <div className={chatStyles.chat__background}>
@@ -39,3 +37,22 @@ const Party = () => {
 };
 
 export default Party;
+
+export const getStaticProps: GetStaticProps<any> = async (ctx) => {
+  const id = ctx.params.id as string;
+  const team = await getTeamById(id);
+  return { props: { team } };
+};
+
+export const getStaticPaths: GetStaticPaths<{ id: string }> = async () => {
+  const teams = await getLastestTeams();
+
+  const paths = teams.map((team) => {
+    return { params: { id: team.id.toString() } };
+  });
+
+  return {
+    fallback: false,
+    paths,
+  };
+};
