@@ -10,7 +10,7 @@ const Party = ({ team }) => {
       <div className={chatStyles.left__column}>
         <p>
           Buscamos uno para fflex, minimo challengerflex, minimo challengerflex,
-          minimo challengerlex, minimo challenger{" "}
+          minimo challengerlex, minimo challenger
         </p>
         <h4>TEAM</h4>
         {SummonerComponentCreator(team)}
@@ -22,7 +22,7 @@ const Party = ({ team }) => {
             <div
               className={`${chatStyles.chat__bubble}  ${chatStyles.response}`}
             >
-              hola hola megustaria
+              {team.info}
             </div>
           </Col>
           <Col md={6} className={chatStyles.col__sent}>
@@ -47,12 +47,12 @@ export const getStaticProps: GetStaticProps<any> = async (ctx) => {
 export const getStaticPaths: GetStaticPaths<{ id: string }> = async () => {
   const teams = await getLastestTeams();
 
-  const paths = teams.map((team) => {
+  const paths = teams.map((team: any) => {
     return { params: { id: team.id.toString() } };
   });
 
   return {
-    fallback: false,
+    fallback: true,
     paths,
   };
 };

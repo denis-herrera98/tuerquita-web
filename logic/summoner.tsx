@@ -1,21 +1,18 @@
 import Summoner from "./../components/Summoner";
+import { findRegionOPGG } from "../handlers/op_regions";
+import { findFlexAndSoloqStatus } from "../helpers/find_ranked_data";
 
-const SummonerComponentCreator = (team) => {
+const SummonerComponentCreator = (team: any) => {
   const summonerComponents = [];
 
   team.data.map((player: any, index: number) => {
-    const flex = player.rankedData.find(
-      (p) => p.queueType === "RANKED_FLEX_SR"
-    );
-    const soloq = player.rankedData.find(
-      (p) => p.queueType === "RANKED_SOLO_5x5"
-    );
-
-    console.log(soloq?.tier, flex.tier);
+    const { soloq, flex } = findFlexAndSoloqStatus(player.rankedData);
     summonerComponents.push(
       <Summoner
         name={player.lolName}
+        profileIconId={player.profileIconId}
         level={player.summonerLevel}
+        region={findRegionOPGG(player.region)}
         soloq={soloq?.tier}
         flex={flex?.tier}
         key={index}
