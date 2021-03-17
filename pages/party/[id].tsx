@@ -2,7 +2,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import chatStyles from "../../styles/Chat.module.scss";
 import { getTeamById, getLastestTeams } from "../../handlers/lolapi";
 import SummonerComponentCreator from "../../logic/summoner";
-import { Col } from "react-bootstrap";
+import Chat from "../../components/Chat";
 
 const Party = ({ team }) => {
   return (
@@ -15,23 +15,7 @@ const Party = ({ team }) => {
         <h4>TEAM</h4>
         {SummonerComponentCreator(team)}
       </div>
-      <div className={chatStyles.chat__container}>
-        <div className={chatStyles.chat__background}>
-          <div className={chatStyles.text__field}> Message to Don as</div>
-          <Col md={6} className={`${chatStyles.col__response}`}>
-            <div
-              className={`${chatStyles.chat__bubble}  ${chatStyles.response}`}
-            >
-              {team.info}
-            </div>
-          </Col>
-          <Col md={6} className={chatStyles.col__sent}>
-            <div className={`${chatStyles.chat__bubble}  ${chatStyles.sent}`}>
-              hola hola megustaria podre
-            </div>
-          </Col>
-        </div>
-      </div>
+      <Chat msgTo="UnSobito" />
     </div>
   );
 };

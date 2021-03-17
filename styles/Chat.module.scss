@@ -26,16 +26,15 @@
     .chat__container {
         padding: 2rem;
         min-height: calc(100vh - 65px);
+        max-height: calc(100vh - 65px);
         width: 100%;
 
         .chat__background {
             display: flex;
             height: 100%;
-            align-content: flex-end;
-            align-items: flex-end;
-            flex-direction: column-reverse;
             background: variables.$background-color;
             border-radius: 40px;
+            flex-direction: column;
 
             .col__response {
                 margin-right: left;
@@ -44,25 +43,47 @@
                 display: flex;
             }
 
+            .form {
+                margin-top: auto;
+                align-self: flex-end;
+                width: 100%;
+            }
+
             .col__sent {
                 display: flex;
                 justify-content: flex-end;
             }
 
+            .messages__container {
+            overflow: auto;
+            align-content: flex-end;
+            align-items: flex-end;
+            height: 100%;
+            display: flex;
+            flex-direction: column-reverse;
+            }
+
+            textarea:focus, input:focus{
+            outline: none;
+            }
+
             .text__field {
+                border: none;
+                color: white;
                 display: flex;
                 align-items: center;
                 padding-left: 2rem;
+                padding-right: 2rem;
                 margin-top: 50px;
                 width: 100%;
                 font-family: Roboto;
-                align-self: flex-end;
                 border-radius: 40px;
                 height: 50px;
                 background: variables.$text-field-color;
             }
 
             .chat__bubble {
+                max-width: 90%;
                 padding: .8rem 1rem;
                 margin: 1rem 1.5rem;
                 background: variables.$msg-sent;
@@ -71,6 +92,11 @@
 
                 &.response {
                     background: variables.$msg-response;
+                }
+
+                p {
+                    margin: 0;
+                    overflow-wrap: anywhere;
                 }
             }
         }
