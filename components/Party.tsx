@@ -1,10 +1,13 @@
 import partyStyles from "../styles/Party.module.scss";
-import Image from "next/image";
+import RowPlayer from "./RowPlayer";
 
-const Party = () => {
+const Party = ({ team }) => {
   return (
     <div className={`${partyStyles.container} ${partyStyles.border__20}`}>
-      <p className={partyStyles.tittle}>HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
+      <p className={partyStyles.tittle}>{team.info}</p>
+      <p className={partyStyles.subtittle}>
+        {new Date(team.timestamp).toLocaleString("en-US")}
+      </p>
       <div className={`${partyStyles.grid} `}>
         <div
           className={` ${partyStyles.soloq} d-flex justify-content-center align-items-center`}
@@ -17,56 +20,11 @@ const Party = () => {
           flex
         </div>
 
-        <div
-          className={` ${partyStyles.dark}  d-flex  align-items-center p-3 `}
-        >
-          <p> Don Denis </p>
-        </div>
-        <div
-          className={` ${partyStyles.dark} d-flex justify-content-center align-items-center`}
-        >
-          <Image
-            src="/emblems/UNRANKED.png"
-            alt="emblem"
-            width={40}
-            height={45}
-          />
-        </div>
-        <div
-          className={` ${partyStyles.dark} d-flex justify-content-center align-items-center`}
-        >
-          <Image
-            src="/emblems/UNRANKED.png"
-            alt="emblem"
-            width={40}
-            height={45}
-          />
-        </div>
-        <div
-          className={` ${partyStyles.light} ${partyStyles.border__l} d-flex  align-items-center p-3 `}
-        >
-          <p> Don Denis </p>
-        </div>
-        <div
-          className={` ${partyStyles.light}   d-flex justify-content-center align-items-center`}
-        >
-          <Image
-            src="/emblems/UNRANKED.png"
-            alt="emblem"
-            width={40}
-            height={45}
-          />
-        </div>
-        <div
-          className={`  ${partyStyles.light} ${partyStyles.border__r}  d-flex justify-content-center align-items-center`}
-        >
-          <Image
-            src="/emblems/UNRANKED.png"
-            alt="emblem"
-            width={40}
-            height={45}
-          />
-        </div>
+        {team.data.map((player, index) => {
+          return (
+            <RowPlayer index={index} team={team} player={player} key={index} />
+          );
+        })}
       </div>
     </div>
   );

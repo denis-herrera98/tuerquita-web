@@ -1,5 +1,8 @@
 import "../styles/globals.scss";
 import Layout from "../components/Layout";
+import { initFirebase } from "../services/firebase";
+
+initFirebase();
 
 function MyApp({ Component, pageProps }) {
   return (
