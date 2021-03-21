@@ -1,6 +1,7 @@
 import partyStyles from "../styles/Party.module.scss";
 import Image from "next/image";
 import { findRegionOPGG } from "../handlers/op_regions";
+import { useRouter } from "next/router";
 import { findFlexAndSoloqStatus } from "../helpers/find_ranked_data";
 
 interface IProps {
@@ -12,13 +13,18 @@ interface IProps {
 const RowPlayer = ({ index, team, player }: IProps) => {
   const { soloq, flex } = findFlexAndSoloqStatus(player.rankedData);
   const region = findRegionOPGG(player.region);
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/party/${team.id}`);
+  };
 
   return (
     <>
       <div
-        className={` ${getBackgroundColor(index)} ${
-          index === team.data.length - 1 ? partyStyles.border__l : ""
-        } d-flex  align-items-center p-3 `}
+        className={` ${getBackgroundColor(
+          index
+        )} d-flex  align-items-center p-3 `}
       >
         <a
           target="_blank"
@@ -42,9 +48,9 @@ const RowPlayer = ({ index, team, player }: IProps) => {
         />
       </div>
       <div
-        className={` ${getBackgroundColor(index)} ${
-          index === team.data.length - 1 ? partyStyles.border__r : ""
-        } d-flex justify-content-center align-items-center`}
+        className={` ${getBackgroundColor(
+          index
+        )}  d-flex justify-content-center align-items-center`}
       >
         <Image
           src={`${
@@ -55,6 +61,15 @@ const RowPlayer = ({ index, team, player }: IProps) => {
           height={45}
         />
       </div>
+      {index === team.data.length - 1 ? (
+        <div className={partyStyles.btn__container}>
+          <div onClick={handleClick} className={partyStyles.btn__join}>
+            JOIN
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
     </>
   );
 };

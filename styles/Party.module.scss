@@ -5,9 +5,38 @@
 }
 
 .container {
+
+    @keyframes expand {
+        from {
+            transform: scale(0);
+            opacity: 0;
+            background: #5470B0;
+        }
+    }
+
+    animation: expand .5s ease-in-out;
     background: variables.$summoner-background;
     margin: 2rem 1rem;
     filter: drop-shadow(0px 2px 2px black);
+
+    .btn__container {
+
+        display: flex;
+        grid-column: span 3;
+
+
+    .btn__join {
+        cursor: pointer;
+        padding: .3rem;
+        background: variables.$secondary-color;
+        color: white;
+        text-align: center;
+        border-radius: 20px;
+        margin: 1rem 0 1rem 1.6rem;
+        padding: .3rem .5rem;
+
+    }
+}
 
     p, a {
         overflow-wrap: anywhere;

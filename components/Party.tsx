@@ -1,3 +1,4 @@
+import { Row, Col } from "react-bootstrap";
 import partyStyles from "../styles/Party.module.scss";
 import RowPlayer from "./RowPlayer";
 
@@ -8,6 +9,7 @@ const Party = ({ team }) => {
       <p className={partyStyles.subtittle}>
         {new Date(team.timestamp).toLocaleString("en-US")}
       </p>
+
       <div className={`${partyStyles.grid} `}>
         <div
           className={` ${partyStyles.soloq} d-flex justify-content-center align-items-center`}
