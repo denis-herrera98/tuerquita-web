@@ -7,7 +7,6 @@
 
 .container {
 
-
     @keyframes expand {
         from {
             transform: scale(0);
@@ -110,7 +109,6 @@
         border-bottom: 5px solid variables.$correct-color;
         border-right: 5px solid variables.$correct-color;
     }
-
 
     .incorrect{
         position: absolute;
