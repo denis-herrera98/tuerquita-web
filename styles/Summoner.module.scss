@@ -1,8 +1,28 @@
 @use './variables.scss';
 
-.selected {
-    border-style: solid;
-    border-color: variables.$correct-color;
+
+
+.hover__effect {
+    position: relative;
+* {
+  transition: all 0.3s ease-out;
+}
+  &:hover {
+    transition: all 0.2s ease-out;
+    top: -4px;
+    background-color: lighten(variables.$summoner-background, 2%);
+    filter: none;
+  }
+
+  &:hover:before {
+    transform: scale(2.15);
+  }
+}
+
+.account__selected {
+    top: -4px !important;
+    background-color: lighten(variables.$summoner-background, 2%) !important;
+    filter: none !important;
 }
 
 .container {
@@ -14,6 +34,8 @@
             background: #5470B0;
         }
     }
+
+
 
     background-color: variables.$summoner-background;
     margin-top: 2rem;

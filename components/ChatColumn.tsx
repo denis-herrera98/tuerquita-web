@@ -31,6 +31,7 @@ const PartyChatColumn = ({ id }: IProps) => {
             const { soloq, flex } = findFlexAndSoloqStatus(player.rankedData);
             return (
               <Summoner
+                id={player.id}
                 name={player.lolName}
                 profileIconId={player.profileIconId}
                 level={player.summonerLevel}

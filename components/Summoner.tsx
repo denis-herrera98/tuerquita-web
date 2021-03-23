@@ -1,30 +1,58 @@
 import summonerStyles from "../styles/Summoner.module.scss";
+import { useRouter } from "next/router";
 import Image from "next/image";
-import { Row, Col, Container } from "react-bootstrap";
+import { selectedSummoner } from "../redux/summoner/actions";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 interface IProps {
   name: string;
   soloq: string;
   flex: string;
+  id: string;
   region: string;
   profileIconId: string;
+  level: string;
   canDelete?: boolean;
   leader?: boolean;
-  level: string;
+  onHover?: boolean;
+  interactive?: boolean;
 }
 
 const Summoner = ({
   name,
   canDelete,
+  id,
   leader,
   level,
   soloq,
   region,
   flex,
+  onHover,
+  interactive,
   profileIconId,
 }: IProps) => {
+  const dispatch = useAppDispatch();
+  const accountSelected = useAppSelector(
+    (state) => state.summonerReducer.summoner
+  );
+
+  const router = useRouter();
+  const { redirect } = router.query;
+
+  const handleSelect = () => {
+    dispatch(
+      selectedSummoner({ name, id, soloq, flex, region, profileIconId, level })
+    );
+    router.push(`/party/${redirect}`);
+  };
+
   return (
-    <div className={summonerStyles.container}>
+    <div
+      className={`${onHover ? summonerStyles.hover__effect : ""} ${
+        summonerStyles.container
+      } ${accountSelected?.id == id ? summonerStyles.account__selected : ""}`}
+      onClick={interactive ? handleSelect : null}
+    >
       <div className={summonerStyles.grid}>
         <div className={summonerStyles.profile__picture}>
           <Image

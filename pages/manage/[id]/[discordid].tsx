@@ -10,10 +10,6 @@ export const ManageParty = () => {
   const [value, loading, error] = useDocument(
     firebase.firestore().doc(`solicitude/${id}`)
   );
-
-  console.log(error);
-  console.log(value.data());
-
   return <div> casdsadasd</div>;
 };
 

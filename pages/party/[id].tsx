@@ -1,17 +1,39 @@
 import chatStyles from "../../styles/Chat.module.scss";
 import Chat from "../../components/Chat";
 import PartyChatColumn from "../../components/ChatColumn";
+import Spinner from "react-bootstrap/Spinner";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { useAppSelector } from "../../redux/hooks";
 
 const Party = () => {
   const router = useRouter();
   const { id } = router.query;
 
+  const accountSelected = useAppSelector(
+    (state) => state.summonerReducer.summoner
+  );
+
+  useEffect(() => {
+    if (!accountSelected) {
+      router.push({
+        pathname: "/account",
+        query: { redirect: id },
+      });
+    }
+  }, [accountSelected, id]);
+
   return (
-    <div className={chatStyles.container}>
-      <PartyChatColumn id={id as string} />
-      <Chat msgTo="UnSobito" messages={[]} />
-    </div>
+    <>
+      {accountSelected ? (
+        <div className={chatStyles.container}>
+          <PartyChatColumn id={id as string} />
+          <Chat msgTo="UnSobito" messages={[]} />
+        </div>
+      ) : (
+        ""
+      )}
+    </>
   );
 };
 
@@ -48,5 +70,4 @@ export const getStaticPaths: GetStaticPaths<{ id: string }> = async () => {
     paths,
   };
 };
-
 */

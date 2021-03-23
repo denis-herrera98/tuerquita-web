@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { partyReducer } from "./party/partyReducer";
+import { summonerReducer } from "./summoner/summonerReducer";
 
 const reducers = combineReducers({
-  partyReducer,
+  summonerReducer,
 });
 
 const initialState = {};

@@ -2,18 +2,21 @@ import { findFlexAndSoloqStatus } from "../helpers/find_ranked_data";
 import regions from "../data/opgg_regions.json";
 import Summoner from "./../components/Summoner";
 
-const OnlyOneSummonerCreator = (player, region: string) => {
+const OnlyOneSummonerCreator = (player: any, region: string) => {
   const { soloq, flex } = findFlexAndSoloqStatus(player.rank);
 
   return (
     <Summoner
+      id={player.id}
       region={regions[region]}
       name={player.name}
       level={player.summonerLevel}
       soloq={soloq?.tier}
       flex={flex?.tier}
+      onHover={true}
       profileIconId={player.profileIconId}
       key={player.id}
+      interactive={true}
     />
   );
 };

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Command from "../components/Command";
 import homeStyles from "../styles/Home.module.scss";
-import commandStyles from "../styles/Command.module.scss";
 import { Row, Col, Container } from "react-bootstrap";
 
 const Home = () => {
