@@ -8,10 +8,9 @@ interface IProps {
   error: any;
   loading: boolean;
   data: any;
-  tittle: string;
 }
 
-const PartyChatColumn = ({ tittle, error, loading, data }: IProps) => {
+const ManagePartyColumn = ({ error, loading, data }: IProps) => {
   return (
     <div className={chatStyles.left__column}>
       {error ? (
@@ -20,23 +19,20 @@ const PartyChatColumn = ({ tittle, error, loading, data }: IProps) => {
         <Spinner animation="border" />
       ) : (
         <>
-          <h4>{tittle}</h4>
-          <p>{data.info}</p>
-
-          {data.data.map((player: any, index: number) => {
-            const { soloq, flex } = findFlexAndSoloqStatus(player.rankedData);
+          <h4>SOLICITANTES</h4>
+          {data.players.map((player: any, index: number) => {
             return (
               <Summoner
                 cursorPointer={false}
-                isForChat={false}
+                isForChat={true}
+                canDelete={true}
                 noClickeable={true}
                 id={player.id}
-                name={player.lolName}
+                name={player.name}
                 profileIconId={player.profileIconId}
-                level={player.summonerLevel}
-                region={findRegionOPGG(player.region)}
-                soloq={soloq?.tier}
-                flex={flex?.tier}
+                level={player.level}
+                soloq={player.soloq}
+                flex={player.flex}
                 key={index}
               />
             );
@@ -47,4 +43,4 @@ const PartyChatColumn = ({ tittle, error, loading, data }: IProps) => {
   );
 };
 
-export default PartyChatColumn;
+export default ManagePartyColumn;

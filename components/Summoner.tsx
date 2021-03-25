@@ -9,13 +9,16 @@ interface IProps {
   soloq: string;
   flex: string;
   id: string;
-  region: string;
+  region?: string;
   profileIconId: string;
   level: string;
   canDelete?: boolean;
   leader?: boolean;
+  noClickeable?: boolean;
   onHover?: boolean;
-  interactive?: boolean;
+  cursorPointer: boolean;
+  onChatSelect?: any;
+  isForChat: boolean;
 }
 
 const Summoner = ({
@@ -28,8 +31,11 @@ const Summoner = ({
   region,
   flex,
   onHover,
-  interactive,
+  cursorPointer,
+  isForChat,
+  noClickeable,
   profileIconId,
+  onChatSelect,
 }: IProps) => {
   const dispatch = useAppDispatch();
   const accountSelected = useAppSelector(
@@ -50,8 +56,9 @@ const Summoner = ({
     <div
       className={`${onHover ? summonerStyles.hover__effect : ""} ${
         summonerStyles.container
-      } ${accountSelected?.id == id ? summonerStyles.account__selected : ""}`}
-      onClick={interactive ? handleSelect : null}
+      } ${accountSelected?.id == id ? summonerStyles.account__selected : ""}
+          ${cursorPointer ? summonerStyles.cursor__pointer : ""}`}
+      onClick={noClickeable ? null : isForChat ? onChatSelect : handleSelect}
     >
       <div className={summonerStyles.grid}>
         <div className={summonerStyles.profile__picture}>
@@ -64,12 +71,16 @@ const Summoner = ({
           />
         </div>
         <div className={summonerStyles.name}>
-          <a
-            target="_blank"
-            href={`https://${region}summoner/userName=${name}`}
-          >
-            {name}
-          </a>
+          {!isForChat ? (
+            <p className="mb-0"> {name} </p>
+          ) : (
+            <a
+              target="_blank"
+              href={`https://${region}summoner/userName=${name}`}
+            >
+              {name}
+            </a>
+          )}
           <p className={summonerStyles.subtitle}> Level {level} </p>
         </div>
         <div className={summonerStyles.ranked__data}>

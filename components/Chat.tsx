@@ -1,5 +1,6 @@
 import { useState } from "react";
 import MessageBubble from "../components/MessageBubble";
+import { useSocket } from "../contexts/SocketProvider";
 import chatStyles from "../styles/Chat.module.scss";
 
 interface IProps {
@@ -15,6 +16,8 @@ interface Message {
 
 const Chat = ({ msgTo }: IProps) => {
   const [msg, setMessage] = useState("");
+
+  const socket = useSocket();
   const [messages, setMessages] = useState<Message[]>([
     {
       msg: "SOYOYOYOYOY",
@@ -39,12 +42,7 @@ const Chat = ({ msgTo }: IProps) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    messages.unshift({
-      msg,
-      isSent: true,
-      authorId: "1",
-    });
+    socket.emit("send-message", { msg });
     setMessage("");
   };
 

@@ -74,6 +74,7 @@ const SelectAccount = () => {
                 type="text"
                 onChange={handleOnChange}
                 name="summoner-name"
+                autoComplete="off"
                 placeholder="Nombre de invocador..."
               />
               <button type="submit" className={accountStyles.btn__search}>

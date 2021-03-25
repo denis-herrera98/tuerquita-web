@@ -8,6 +8,7 @@ const OnlyOneSummonerCreator = (player: any, region: string) => {
   return (
     <Summoner
       id={player.id}
+      cursorPointer={true}
       region={regions[region]}
       name={player.name}
       level={player.summonerLevel}
@@ -16,7 +17,7 @@ const OnlyOneSummonerCreator = (player: any, region: string) => {
       onHover={true}
       profileIconId={player.profileIconId}
       key={player.id}
-      interactive={true}
+      isForChat={false}
     />
   );
 };

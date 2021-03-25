@@ -1,17 +1,22 @@
 import chatStyles from "../../styles/Chat.module.scss";
 import Chat from "../../components/Chat";
 import PartyChatColumn from "../../components/ChatColumn";
-import Spinner from "react-bootstrap/Spinner";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useAppSelector } from "../../redux/hooks";
+import firebase from "../../services/firebase";
+import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
 const Party = () => {
   const router = useRouter();
   const { id } = router.query;
-
   const accountSelected = useAppSelector(
     (state) => state.summonerReducer.summoner
+  );
+  const [chats, setChats] = useState<Map<string, any[]>>();
+
+  const [snapshot, loading, error] = useDocumentOnce(
+    firebase.firestore().doc(`lkfteam/${id}`)
   );
 
   useEffect(() => {
@@ -27,7 +32,12 @@ const Party = () => {
     <>
       {accountSelected ? (
         <div className={chatStyles.container}>
-          <PartyChatColumn id={id as string} />
+          <PartyChatColumn
+            tittle="TEAM"
+            data={snapshot?.data()}
+            error={error}
+            loading={loading}
+          />
           <Chat msgTo="UnSobito" messages={[]} />
         </div>
       ) : (
