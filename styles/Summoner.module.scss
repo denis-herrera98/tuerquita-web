@@ -1,7 +1,6 @@
 @use './variables.scss';
 
 
-
 .hover__effect {
     position: relative;
 * {
@@ -10,8 +9,7 @@
   &:hover {
     transition: all 0.2s ease-out;
     top: -4px;
-    background-color: lighten(variables.$summoner-background, 2%);
-    filter: none;
+    background-color: lighten(variables.$summoner-background, 1%);
   }
 
   &:hover:before {
@@ -25,6 +23,10 @@
     filter: none !important;
 }
 
+.cursor__pointer {
+    cursor: pointer;
+}
+
 .container {
 
     @keyframes expand {
@@ -34,8 +36,6 @@
             background: #5470B0;
         }
     }
-
-
 
     background-color: variables.$summoner-background;
     margin-top: 2rem;
@@ -75,11 +75,29 @@
 
         a {
             font-size: 1.2rem;
-            display: block;
+            display: flex;
+            justify-content: flex-start;
             overflow: hidden;
             max-height: 50px;
+            text-decoration: none;
             max-width: 215px;
             min-width: 215px;
+
+        }
+
+        p {
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: flex-start;
+            overflow: hidden;
+            max-height: 50px;
+            text-decoration: none;
+            max-width: 215px;
+            min-width: 215px;
+        }
+
+        a:hover {
+            color: white;
         }
     }
 

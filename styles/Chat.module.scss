@@ -9,7 +9,7 @@
         padding-top: 2rem;
         max-height: calc(100vh - 65px);
         min-height: calc(100vh - 65px);
-        background: variables.$background-color;
+        background: variables.$primary-color;
         width: 460px;
         overflow: auto;
         display: flex;
@@ -32,7 +32,7 @@
         .chat__background {
             display: flex;
             height: 100%;
-            background: variables.$background-color;
+            background: variables.$primary-color;
             border-radius: 40px;
             flex-direction: column;
 
@@ -91,7 +91,7 @@
                 font-family: Roboto;
 
                 &.response {
-                    background: variables.$msg-response;
+                    background: variables.$text-field-color;
                 }
 
                 p {
