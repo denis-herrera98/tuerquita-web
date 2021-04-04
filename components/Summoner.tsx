@@ -2,6 +2,7 @@ import summonerStyles from "../styles/Summoner.module.scss";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { selectedSummoner } from "../redux/summoner/actions";
+import { createConversation, setCurrentRecipient } from "../redux/chat/actions";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 interface IProps {
@@ -14,17 +15,17 @@ interface IProps {
   level: string;
   canDelete?: boolean;
   leader?: boolean;
-  noClickeable?: boolean;
+  isClickeable?: boolean;
   onHover?: boolean;
   cursorPointer: boolean;
-  onChatSelect?: any;
   isForChat: boolean;
+  isNameClickeable: boolean;
 }
 
 const Summoner = ({
   name,
   canDelete,
-  id,
+  id: summonerId,
   leader,
   level,
   soloq,
@@ -33,32 +34,53 @@ const Summoner = ({
   onHover,
   cursorPointer,
   isForChat,
-  noClickeable,
+  isClickeable,
   profileIconId,
-  onChatSelect,
+  isNameClickeable,
 }: IProps) => {
   const dispatch = useAppDispatch();
   const accountSelected = useAppSelector(
     (state) => state.summonerReducer.summoner
   );
 
+  const chatSelected = useAppSelector((state) => state.chatReducer.activeChat);
+
   const router = useRouter();
   const { redirect } = router.query;
 
   const handleSelect = () => {
     dispatch(
-      selectedSummoner({ name, id, soloq, flex, region, profileIconId, level })
+      selectedSummoner({
+        name,
+        id: summonerId,
+        soloq,
+        flex,
+        region,
+        profileIconId,
+        level,
+      })
     );
     router.push(`/party/${redirect}`);
+  };
+
+  const onChatSelect = () => {
+    dispatch(setCurrentRecipient(summonerId));
   };
 
   return (
     <div
       className={`${onHover ? summonerStyles.hover__effect : ""} ${
         summonerStyles.container
-      } ${accountSelected?.id == id ? summonerStyles.account__selected : ""}
+      } ${
+        accountSelected?.id == summonerId
+          ? summonerStyles.account__selected
+          : ""
+      }
+            ${
+              chatSelected == summonerId ? summonerStyles.account__selected : ""
+            }
           ${cursorPointer ? summonerStyles.cursor__pointer : ""}`}
-      onClick={noClickeable ? null : isForChat ? onChatSelect : handleSelect}
+      onClick={!isClickeable ? null : isForChat ? onChatSelect : handleSelect}
     >
       <div className={summonerStyles.grid}>
         <div className={summonerStyles.profile__picture}>
@@ -71,15 +93,15 @@ const Summoner = ({
           />
         </div>
         <div className={summonerStyles.name}>
-          {!isForChat ? (
-            <p className="mb-0"> {name} </p>
-          ) : (
+          {isNameClickeable ? (
             <a
               target="_blank"
-              href={`https://${region}summoner/userName=${name}`}
+              href={`https://${region}/summoner/userName=${name}`}
             >
               {name}
             </a>
+          ) : (
+            <p className="mb-0"> {name} </p>
           )}
           <p className={summonerStyles.subtitle}> Level {level} </p>
         </div>

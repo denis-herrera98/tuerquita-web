@@ -1,4 +1,3 @@
-import { Row, Col } from "react-bootstrap";
 import partyStyles from "../styles/Party.module.scss";
 import RowPlayer from "./RowPlayer";
 

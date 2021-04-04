@@ -29,7 +29,8 @@ const PartyChatColumn = ({ tittle, error, loading, data }: IProps) => {
               <Summoner
                 cursorPointer={false}
                 isForChat={false}
-                noClickeable={true}
+                isClickeable={false}
+                isNameClickeable={true}
                 id={player.id}
                 name={player.lolName}
                 profileIconId={player.profileIconId}

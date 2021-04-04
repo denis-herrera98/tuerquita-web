@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { io, Socket } from "socket.io-client";
+import { useAppSelector } from "../redux/hooks";
 
 const SocketContext = React.createContext<Socket>(null);
 
@@ -13,17 +14,16 @@ interface IProps {
 
 const SocketProvider: React.FC = ({ children }: IProps) => {
   const [socket, setSocket] = useState<Socket>();
-  const id = "2";
-
-  socket?.on("chat-message", () => {
-    console.log("se connecto el client");
-  });
+  const id = useAppSelector((state) => state.summonerReducer.summoner?.id);
 
   useEffect((): (() => void) => {
-    const newSocket = io("http://localhost:5000", { query: { id } });
-    setSocket(newSocket);
+    if (id) {
+      const newSocket = io("http://localhost:5000", { query: { id } });
+      setSocket(newSocket);
+      console.log("id en socket provider", id);
 
-    return () => newSocket.close();
+      return () => newSocket.close();
+    }
   }, [id]);
 
   return (

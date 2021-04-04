@@ -66,6 +66,9 @@
     .name {
         margin-left: 1rem;
 
+            max-width: 215px;
+            min-width: 215px;
+
         .subtitle {
             opacity: 70%;
             font-size: .8rem;
@@ -75,25 +78,19 @@
 
         a {
             font-size: 1.2rem;
-            display: flex;
             justify-content: flex-start;
             overflow: hidden;
             max-height: 50px;
             text-decoration: none;
-            max-width: 215px;
-            min-width: 215px;
 
         }
 
         p {
             font-size: 1.2rem;
-            display: flex;
             justify-content: flex-start;
             overflow: hidden;
             max-height: 50px;
             text-decoration: none;
-            max-width: 215px;
-            min-width: 215px;
         }
 
         a:hover {

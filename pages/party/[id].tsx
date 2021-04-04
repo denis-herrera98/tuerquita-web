@@ -1,10 +1,14 @@
 import chatStyles from "../../styles/Chat.module.scss";
 import Chat from "../../components/Chat";
 import PartyChatColumn from "../../components/ChatColumn";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import firebase from "../../services/firebase";
+import {
+  createConversation,
+  setCurrentRecipient,
+} from "../../redux/chat/actions";
 import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
 const Party = () => {
@@ -13,11 +17,12 @@ const Party = () => {
   const accountSelected = useAppSelector(
     (state) => state.summonerReducer.summoner
   );
-  const [chats, setChats] = useState<Map<string, any[]>>();
 
   const [snapshot, loading, error] = useDocumentOnce(
     firebase.firestore().doc(`lkfteam/${id}`)
   );
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!accountSelected) {
@@ -26,6 +31,9 @@ const Party = () => {
         query: { redirect: id },
       });
     }
+
+    dispatch(createConversation(id?.toString(), accountSelected?.id));
+    dispatch(setCurrentRecipient(id?.toString()));
   }, [accountSelected, id]);
 
   return (
@@ -38,7 +46,7 @@ const Party = () => {
             error={error}
             loading={loading}
           />
-          <Chat msgTo="UnSobito" messages={[]} />
+          <Chat />
         </div>
       ) : (
         ""

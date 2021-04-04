@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 const Header = () => {
-  return <title>Tuerquita Bot</title>;
+  return <Head></Head>;
 };
 
 export default Header;

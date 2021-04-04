@@ -9,6 +9,7 @@ interface IProps {
 const MessageBubble = ({ msg, isSent }: IProps) => {
   return (
     <Col
+      lg={10}
       md={6}
       className={`${isSent ? chatStyles.col__sent : chatStyles.col__response}`}
     >
