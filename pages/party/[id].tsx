@@ -10,6 +10,7 @@ import {
   setCurrentRecipient,
 } from "../../redux/chat/actions";
 import { useDocumentOnce } from "react-firebase-hooks/firestore";
+import SelectAccount from "../../components/Account";
 
 const Party = () => {
   const router = useRouter();
@@ -25,13 +26,6 @@ const Party = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (!accountSelected) {
-      router.push({
-        pathname: "/account",
-        query: { redirect: id },
-      });
-    }
-
     dispatch(createConversation(id?.toString(), accountSelected?.id));
     dispatch(setCurrentRecipient(id?.toString()));
   }, [accountSelected, id]);
@@ -49,7 +43,7 @@ const Party = () => {
           <Chat />
         </div>
       ) : (
-        ""
+        <SelectAccount />
       )}
     </>
   );

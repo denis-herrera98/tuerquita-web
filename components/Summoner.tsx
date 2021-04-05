@@ -1,8 +1,7 @@
 import summonerStyles from "../styles/Summoner.module.scss";
-import { useRouter } from "next/router";
 import Image from "next/image";
 import { selectedSummoner } from "../redux/summoner/actions";
-import { createConversation, setCurrentRecipient } from "../redux/chat/actions";
+import { setCurrentRecipient } from "../redux/chat/actions";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 interface IProps {
@@ -45,9 +44,6 @@ const Summoner = ({
 
   const chatSelected = useAppSelector((state) => state.chatReducer.activeChat);
 
-  const router = useRouter();
-  const { redirect } = router.query;
-
   const handleSelect = () => {
     dispatch(
       selectedSummoner({
@@ -60,7 +56,6 @@ const Summoner = ({
         level,
       })
     );
-    router.push(`/party/${redirect}`);
   };
 
   const onChatSelect = () => {
