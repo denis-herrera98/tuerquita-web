@@ -1,5 +1,5 @@
 import { TYPES } from "../types";
-import { ChatActions } from "./chatReducer";
+import { ChatActions, Message } from "./chatReducer";
 
 export const changeChat = (msgTo: string) => {
   return {
@@ -24,11 +24,15 @@ export const createConversation = (
   };
 };
 
-export const addMessage = (msg: string, authorId: string): ChatActions => {
+export const addMessage = ({
+  msg,
+  authorId,
+  recipient,
+}: Message): ChatActions => {
   return {
     type: TYPES.ADD_MSG,
     payload: "",
-    newMessage: { msg, authorId },
+    newMessage: { msg, authorId, recipient },
   };
 };
 

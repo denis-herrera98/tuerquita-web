@@ -11,14 +11,16 @@ interface Message {
   authorId: string;
 }
 
-const Chat = () => {
+const Chat: React.FC = () => {
   const [msg, setMessage] = useState("");
   const socket = useSocket();
   const dispatch = useAppDispatch();
   const { chats, activeChat, currentRecipient } = useAppSelector(
     (state) => state.chatReducer
   );
-  const id = useAppSelector((state) => state.summonerReducer.activeUserId);
+  const authorId = useAppSelector(
+    (state) => state.summonerReducer.activeUserId
+  );
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMessage(event.target.value);
@@ -27,8 +29,9 @@ const Chat = () => {
   useEffect((): any => {
     if (socket == null) return;
 
-    socket.on("receive-message", ({ msg, currentRecipient }) => {
-      dispatch(addMessage(msg, currentRecipient));
+    socket.on("receive-message", ({ msg, authorId, currentRecipient }) => {
+      console.log(currentRecipient);
+      dispatch(addMessage({ msg, authorId, recipient: currentRecipient }));
     });
 
     return () => socket.off("receive-message");
@@ -38,8 +41,8 @@ const Chat = () => {
     e.preventDefault();
     if (!msg || !msg.trim()) return;
 
-    dispatch(addMessage(msg, currentRecipient));
-    socket.emit("send-message", { msg, currentRecipient });
+    dispatch(addMessage({ msg, authorId, recipient: currentRecipient }));
+    socket.emit("send-message", { msg, currentRecipient, authorId });
     setMessage("");
   };
 
@@ -54,7 +57,7 @@ const Chat = () => {
                 <MessageBubble
                   key={i}
                   msg={msg.msg}
-                  isSent={msg.authorId !== id}
+                  isSent={msg.authorId === authorId}
                 />
               );
             })}

@@ -11,9 +11,10 @@ interface Conversations {
   messages: Message[];
 }
 
-interface Message {
+export interface Message {
   msg: string;
   authorId: string;
+  recipient: string;
 }
 
 const initialState: ChatState = {
@@ -61,8 +62,10 @@ export const chatReducer = (
       console.log("author", action.newMessage.authorId);
 
       copy
-        .find((conversation) =>
-          conversation.chatId.includes(action.newMessage.authorId)
+        .find(
+          (conversation) =>
+            conversation.chatId.includes(action.newMessage.authorId) &&
+            conversation.chatId.includes(action.newMessage.recipient)
         )
         ?.messages.unshift(action.newMessage);
 

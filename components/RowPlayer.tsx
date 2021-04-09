@@ -10,7 +10,7 @@ interface IProps {
   player: any;
 }
 
-const RowPlayer = ({ index, team, player }: IProps) => {
+const RowPlayer: React.FC<IProps> = ({ index, team, player }: IProps) => {
   const { soloq, flex } = findFlexAndSoloqStatus(player.rankedData);
   const region = findRegionOPGG(player.region);
   const router = useRouter();

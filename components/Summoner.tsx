@@ -22,7 +22,7 @@ interface IProps {
   isNameClickeable: boolean;
 }
 
-const Summoner = ({
+const Summoner: React.FC<IProps> = ({
   name,
   canDelete,
   id: summonerId,
@@ -39,11 +39,14 @@ const Summoner = ({
   isNameClickeable,
 }: IProps) => {
   const dispatch = useAppDispatch();
+
   const accountSelected = useAppSelector(
     (state) => state.summonerReducer.summoner
   );
 
-  const chatSelected = useAppSelector((state) => state.chatReducer.activeChat);
+  const chatSelected = useAppSelector(
+    (state) => state.chatReducer.currentRecipient
+  );
   const activeUser = useAppSelector(
     (state) => state.summonerReducer.activeUserId
   );

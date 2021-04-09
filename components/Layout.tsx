@@ -1,14 +1,11 @@
 import Nav from "./Nav";
 import Header from "./Header";
 
-const Layout = ({ children }) => {
+const Layout: React.FC = ({ children }) => {
   return (
     <>
       <Nav />
-      <main>
-        <Header />
-        {children}
-      </main>
+      <main>{children}</main>
     </>
   );
 };

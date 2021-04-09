@@ -1,7 +1,11 @@
 import Head from "next/head";
 
-const Header = () => {
-  return <Head></Head>;
+const Header: React.FC = () => {
+  return (
+    <Head>
+      <div> Soy el gato</div>
+    </Head>
+  );
 };
 
 export default Header;

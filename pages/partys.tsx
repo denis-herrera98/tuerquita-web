@@ -18,7 +18,7 @@ const query = firebase
   .orderBy("timestamp", "desc")
   .limit(10);
 
-const Partys = () => {
+const Partys: React.FC = () => {
   const [querySnapshot, loading, error] = useCollection(query);
   const [teams, setTeams] = useState([]);
 

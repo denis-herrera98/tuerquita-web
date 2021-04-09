@@ -11,7 +11,7 @@ interface IProps {
   partyId: string;
 }
 
-const ManagePartyColumn = ({ partyId }: IProps) => {
+const ManagePartyColumn: React.FC<IProps> = ({ partyId }: IProps) => {
   const [snapshot, loading, error] = useCollection(
     firebase
       .firestore()

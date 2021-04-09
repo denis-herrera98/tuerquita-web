@@ -6,7 +6,7 @@ import { getSummonerData } from "../handlers/lolapi";
 import { useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 
-const SelectAccount = () => {
+const SelectAccount: React.FC = () => {
   const [region, setRegion] = useState("LAN");
   const [name, setName] = useState("");
   const [account, setAccount] = useState();

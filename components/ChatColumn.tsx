@@ -11,7 +11,12 @@ interface IProps {
   tittle: string;
 }
 
-const PartyChatColumn = ({ tittle, error, loading, data }: IProps) => {
+const PartyChatColumn: React.FC<IProps> = ({
+  tittle,
+  error,
+  loading,
+  data,
+}: IProps) => {
   return (
     <div className={chatStyles.left__column}>
       {error ? (

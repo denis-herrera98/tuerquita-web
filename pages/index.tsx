@@ -3,7 +3,7 @@ import Command from "../components/Command";
 import homeStyles from "../styles/Home.module.scss";
 import { Row, Col, Container } from "react-bootstrap";
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <>
       <Container>

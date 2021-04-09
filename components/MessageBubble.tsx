@@ -6,7 +6,7 @@ interface IProps {
   isSent: boolean;
 }
 
-const MessageBubble = ({ msg, isSent }: IProps) => {
+const MessageBubble: React.FC<IProps> = ({ msg, isSent }: IProps) => {
   return (
     <Col
       lg={10}

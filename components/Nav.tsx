@@ -2,7 +2,7 @@ import navStyles from "../styles/Nav.module.scss";
 import Link from "next/link";
 import { Link as ScrollLink } from "react-scroll";
 
-const Nav = () => {
+const Nav: React.FC = () => {
   return (
     <nav className={navStyles.navbar}>
       <ul>
