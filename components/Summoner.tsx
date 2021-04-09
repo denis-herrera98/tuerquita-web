@@ -1,8 +1,9 @@
 import summonerStyles from "../styles/Summoner.module.scss";
 import Image from "next/image";
-import { selectedSummoner } from "../redux/summoner/actions";
+import { selectedSummoner, setActiveUser } from "../redux/summoner/actions";
 import { setCurrentRecipient } from "../redux/chat/actions";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { rejectSummonerRequest } from "../handlers/lolapi";
 
 interface IProps {
   name: string;
@@ -43,6 +44,13 @@ const Summoner = ({
   );
 
   const chatSelected = useAppSelector((state) => state.chatReducer.activeChat);
+  const activeUser = useAppSelector(
+    (state) => state.summonerReducer.activeUserId
+  );
+
+  const handleReject = () => {
+    rejectSummonerRequest(summonerId, activeUser);
+  };
 
   const handleSelect = () => {
     dispatch(
@@ -56,6 +64,7 @@ const Summoner = ({
         level,
       })
     );
+    dispatch(setActiveUser(summonerId));
   };
 
   const onChatSelect = () => {
@@ -67,7 +76,7 @@ const Summoner = ({
       className={`${onHover ? summonerStyles.hover__effect : ""} ${
         summonerStyles.container
       } ${
-        accountSelected?.id == summonerId
+        accountSelected?.id === summonerId
           ? summonerStyles.account__selected
           : ""
       }
@@ -125,7 +134,13 @@ const Summoner = ({
             <p> Flex </p>
           </div>
         </div>
-        {canDelete ? <div className={summonerStyles.incorrect}>X</div> : ""}
+        {canDelete ? (
+          <div onClick={handleReject} className={summonerStyles.incorrect}>
+            X
+          </div>
+        ) : (
+          ""
+        )}
         {leader ? <h5 className={summonerStyles.tag__leader}>LIDER</h5> : ""}
       </div>
     </div>

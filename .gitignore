@@ -32,3 +32,8 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+.env.development
+.env.production
+.eslintignore
+.eslintrc

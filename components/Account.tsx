@@ -1,10 +1,9 @@
 import accountStyles from "../styles/Account.module.scss";
 import regions from "../data/regions.json";
 import { Col, Container } from "react-bootstrap";
-import { useRouter } from "next/router";
 import OnlyOneSummonerCreator from "../logic/accounts";
 import { getSummonerData } from "../handlers/lolapi";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 
 const SelectAccount = () => {
@@ -13,21 +12,10 @@ const SelectAccount = () => {
   const [account, setAccount] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [notFound, setNotFound] = useState(false);
-  const router = useRouter();
 
   const handleSelect = (value: string) => {
     setRegion(value);
   };
-
-  const { redirect } = router.query;
-
-  useEffect(() => {
-    /*
-    if (!redirect) {
-      router.replace("/partys");
-    }
-    */
-  }, []);
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);

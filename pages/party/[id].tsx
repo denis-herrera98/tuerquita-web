@@ -1,7 +1,7 @@
 import chatStyles from "../../styles/Chat.module.scss";
 import Chat from "../../components/Chat";
 import PartyChatColumn from "../../components/ChatColumn";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import firebase from "../../services/firebase";
@@ -9,26 +9,65 @@ import {
   createConversation,
   setCurrentRecipient,
 } from "../../redux/chat/actions";
-import { useDocumentOnce } from "react-firebase-hooks/firestore";
+import { useDocument } from "react-firebase-hooks/firestore";
 import SelectAccount from "../../components/Account";
+import {
+  addSummonerRequest,
+  updateSummonerRequest,
+  rejectSummonerRequest,
+} from "../../handlers/lolapi";
 
 const Party = () => {
   const router = useRouter();
   const { id } = router.query;
+  const [isLoading, setIsLoading] = useState(false);
   const accountSelected = useAppSelector(
     (state) => state.summonerReducer.summoner
   );
 
-  const [snapshot, loading, error] = useDocumentOnce(
-    firebase.firestore().doc(`lkfteam/${id}`)
+  const [snapshot, loading, error] = useDocument(
+    firebase.firestore().doc(`lkfteam/${id}`),
+    {
+      snapshotListenOptions: { includeMetadataChanges: true },
+    }
   );
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(createConversation(id?.toString(), accountSelected?.id));
-    dispatch(setCurrentRecipient(id?.toString()));
-  }, [accountSelected, id]);
+    if (snapshot?.data().rejectedPlayers?.includes(accountSelected?.id)) {
+      console.log("USTED HA SIDO RECHAZADO");
+    }
+
+    async function createRequest() {
+      try {
+        setIsLoading(true);
+        const result = await addSummonerRequest(accountSelected, id.toString());
+        setIsLoading(false);
+        return result;
+      } catch (e) {
+        console.log(e);
+        setIsLoading(false);
+      }
+    }
+
+    if (accountSelected && id) {
+      createRequest().then((wasRejected) => {
+        if (wasRejected) {
+          console.log("el usuario fue rechazado");
+        } else {
+          dispatch(createConversation(id.toString(), accountSelected.id));
+          dispatch(setCurrentRecipient(id.toString()));
+        }
+      });
+    }
+
+    return () => {
+      if (accountSelected && id) {
+        updateSummonerRequest(accountSelected.id, id.toString(), "inactive");
+      }
+    };
+  }, [accountSelected, id, snapshot]);
 
   return (
     <>

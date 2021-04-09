@@ -14,7 +14,7 @@ interface IProps {
 
 const SocketProvider: React.FC = ({ children }: IProps) => {
   const [socket, setSocket] = useState<Socket>();
-  const id = useAppSelector((state) => state.summonerReducer.summoner?.id);
+  const id = useAppSelector((state) => state.summonerReducer.activeUserId);
 
   useEffect((): (() => void) => {
     if (id) {

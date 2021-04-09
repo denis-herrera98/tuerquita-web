@@ -2,6 +2,7 @@ import { TYPES } from "../types";
 
 interface SummonerState {
   summoner: Summoner;
+  activeUserId: string;
 }
 
 export interface Summoner {
@@ -16,11 +17,13 @@ export interface Summoner {
 
 const initialState: SummonerState = {
   summoner: undefined,
+  activeUserId: "",
 };
 
 export interface SummonerActions {
   type: string;
-  payload: Summoner;
+  payload?: Summoner;
+  idSummoner?: string;
 }
 
 export const summonerReducer = (
@@ -30,6 +33,10 @@ export const summonerReducer = (
   switch (action.type) {
     case TYPES.SELECT_SUMMONER: {
       return { ...state, summoner: action.payload };
+    }
+
+    case TYPES.SET_ACTIVE_USER: {
+      return { ...state, activeUserId: action.idSummoner };
     }
 
     case TYPES.DELETE_SUMMONER: {

@@ -7,3 +7,10 @@ export const selectedSummoner = (summoner: Summoner): SummonerActions => {
     payload: summoner,
   };
 };
+
+export const setActiveUser = (id: string): SummonerActions => {
+  return {
+    type: TYPES.SET_ACTIVE_USER,
+    idSummoner: id,
+  };
+};

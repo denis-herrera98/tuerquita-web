@@ -1,52 +1,32 @@
 import { useRouter } from "next/router";
+import Spinner from "react-bootstrap/Spinner";
 import chatStyles from "../../../styles/Chat.module.scss";
 import Chat from "../../../components/Chat";
 import ManagePartyColumn from "../../../components/ManagePartyColumn";
-import firebase from "../../../services/firebase";
-import { useDocument } from "react-firebase-hooks/firestore";
 import { useAppDispatch } from "../../../redux/hooks";
-import { selectedSummoner } from "../../../redux/summoner/actions";
+import { setActiveUser } from "../../../redux/summoner/actions";
 import { useEffect } from "react";
 
 export const ManageParty = () => {
   const router = useRouter();
   const { id } = router.query;
   const dispatch = useAppDispatch();
-  const [snapshot, loading, error] = useDocument(
-    firebase.firestore().doc(`solicitude/${id}`)
-  );
 
   useEffect(() => {
     if (id) {
-      dispatch(
-        selectedSummoner({
-          name: "",
-          flex: "",
-          soloq: "",
-          id: id?.toString(),
-          level: "",
-          region: "",
-          profileIconId: "",
-        })
-      );
+      dispatch(setActiveUser(id.toString()));
     }
   }, [id]);
 
   return (
     <div className={chatStyles.container}>
-      {snapshot ? (
+      {!id ? (
+        ""
+      ) : (
         <>
-          <ManagePartyColumn
-            data={snapshot.data()}
-            authorId={id.toString()}
-            error={error}
-            loading={loading}
-          />
-
+          <ManagePartyColumn partyId={id.toString()} />
           <Chat />
         </>
-      ) : (
-        <h4>Error...</h4>
       )}
     </div>
   );

@@ -18,7 +18,7 @@ const Chat = () => {
   const { chats, activeChat, currentRecipient } = useAppSelector(
     (state) => state.chatReducer
   );
-  const id = useAppSelector((state) => state.summonerReducer.summoner.id);
+  const id = useAppSelector((state) => state.summonerReducer.activeUserId);
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMessage(event.target.value);
