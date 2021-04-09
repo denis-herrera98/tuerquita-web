@@ -45,6 +45,7 @@ const createSummoners = (
   authorId: string
 ) => {
   const summoners = [];
+
   data.forEach((doc) => {
     const player = doc.data();
 
@@ -53,9 +54,9 @@ const createSummoners = (
     summoners.push(
       <Summoner
         cursorPointer={false}
-        isForChat={false}
-        isClickeable={false}
+        isForChat={true}
         isNameClickeable={true}
+        isClickeable={true}
         canDelete={true}
         id={player.id}
         name={player.name}
