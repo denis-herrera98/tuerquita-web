@@ -19,14 +19,14 @@ import {
 
 const Party = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { id: partyId } = router.query;
   const [isLoading, setIsLoading] = useState(false);
   const accountSelected = useAppSelector(
     (state) => state.summonerReducer.summoner
   );
 
   const [snapshot, loading, error] = useDocument(
-    firebase.firestore().doc(`lkfteam/${id}`),
+    firebase.firestore().doc(`lkfteam/${partyId}`),
     {
       snapshotListenOptions: { includeMetadataChanges: true },
     }
@@ -42,7 +42,10 @@ const Party = () => {
     async function createRequest() {
       try {
         setIsLoading(true);
-        const result = await addSummonerRequest(accountSelected, id.toString());
+        const result = await addSummonerRequest(
+          accountSelected,
+          partyId.toString()
+        );
         setIsLoading(false);
         return result;
       } catch (e) {
@@ -51,23 +54,28 @@ const Party = () => {
       }
     }
 
-    if (accountSelected && id) {
+    if (accountSelected && partyId) {
+      console.log("entro a esta verga");
       createRequest().then((wasRejected) => {
         if (wasRejected) {
           console.log("el usuario fue rechazado");
         } else {
-          dispatch(createConversation(id.toString(), accountSelected.id));
-          dispatch(setCurrentRecipient(id.toString()));
+          dispatch(createConversation(partyId.toString(), accountSelected.id));
+          dispatch(setCurrentRecipient(partyId.toString()));
         }
       });
     }
 
     return () => {
-      if (accountSelected && id) {
-        updateSummonerRequest(accountSelected.id, id.toString(), "inactive");
+      if (accountSelected && partyId) {
+        updateSummonerRequest(
+          accountSelected.id,
+          partyId.toString(),
+          "inactive"
+        );
       }
     };
-  }, [accountSelected, id, snapshot]);
+  }, [accountSelected, partyId, snapshot]);
 
   return (
     <>

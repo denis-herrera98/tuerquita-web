@@ -4,8 +4,9 @@ import { selectedSummoner, setActiveUser } from "../redux/summoner/actions";
 import { setCurrentRecipient } from "../redux/chat/actions";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { rejectSummonerRequest } from "../handlers/lolapi";
+import { useState, useEffect } from "react";
 
-interface IProps {
+export interface SummonerProps {
   name: string;
   soloq: string;
   flex: string;
@@ -14,7 +15,6 @@ interface IProps {
   profileIconId: string;
   level: string;
   canDelete?: boolean;
-  leader?: boolean;
   isClickeable?: boolean;
   onHover?: boolean;
   cursorPointer: boolean;
@@ -22,11 +22,10 @@ interface IProps {
   isNameClickeable: boolean;
 }
 
-const Summoner: React.FC<IProps> = ({
+const Summoner: React.FC<SummonerProps> = ({
   name,
   canDelete,
   id: summonerId,
-  leader,
   level,
   soloq,
   region,
@@ -37,16 +36,21 @@ const Summoner: React.FC<IProps> = ({
   isClickeable,
   profileIconId,
   isNameClickeable,
-}: IProps) => {
+}: SummonerProps) => {
+  const [newMessagesCounter, setNewMessagesCounter] = useState(0);
+
   const dispatch = useAppDispatch();
 
   const accountSelected = useAppSelector(
     (state) => state.summonerReducer.summoner
   );
 
-  const chatSelected = useAppSelector(
+  const currentRecipient = useAppSelector(
     (state) => state.chatReducer.currentRecipient
   );
+
+  const chatReducer = useAppSelector((state) => state.chatReducer);
+
   const activeUser = useAppSelector(
     (state) => state.summonerReducer.activeUserId
   );
@@ -54,6 +58,16 @@ const Summoner: React.FC<IProps> = ({
   const handleReject = () => {
     rejectSummonerRequest(summonerId, activeUser);
   };
+
+  useEffect(() => {
+    if (chatReducer) {
+      setNewMessagesCounter(
+        chatReducer?.chats.find((conversation) =>
+          conversation.chatId.includes(summonerId)
+        )?.newMessages
+      );
+    }
+  }, [chatReducer]);
 
   const handleSelect = () => {
     dispatch(
@@ -84,7 +98,9 @@ const Summoner: React.FC<IProps> = ({
           : ""
       }
             ${
-              chatSelected == summonerId ? summonerStyles.account__selected : ""
+              currentRecipient == summonerId
+                ? summonerStyles.account__selected
+                : ""
             }
           ${cursorPointer ? summonerStyles.cursor__pointer : ""}`}
       onClick={!isClickeable ? null : isForChat ? onChatSelect : handleSelect}
@@ -144,7 +160,13 @@ const Summoner: React.FC<IProps> = ({
         ) : (
           ""
         )}
-        {leader ? <h5 className={summonerStyles.tag__leader}>LIDER</h5> : ""}
+        {isForChat && newMessagesCounter !== 0 ? (
+          <span className={summonerStyles.new__messages}>
+            {newMessagesCounter <= 99 ? newMessagesCounter : "99+"}
+          </span>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

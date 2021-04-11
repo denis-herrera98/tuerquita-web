@@ -12,12 +12,6 @@ export const createConversation = (
   recipient: string,
   authorId: string
 ): ChatActions => {
-  if (!recipient || !authorId)
-    return {
-      type: TYPES.CREATE_CHAT,
-      payload: "",
-    };
-
   return {
     type: TYPES.CREATE_CHAT,
     payload: `${authorId}-${recipient}`,

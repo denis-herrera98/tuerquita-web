@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import MessageBubble from "../components/MessageBubble";
 import { useSocket } from "../contexts/SocketProvider";
 import chatStyles from "../styles/Chat.module.scss";
-import { ChatState } from "../redux/chat/chatReducer";
 
 interface Message {
   msg: string;
@@ -30,7 +29,6 @@ const Chat: React.FC = () => {
     if (socket == null) return;
 
     socket.on("receive-message", ({ msg, authorId, currentRecipient }) => {
-      console.log(currentRecipient);
       dispatch(addMessage({ msg, authorId, recipient: currentRecipient }));
     });
 
@@ -62,7 +60,6 @@ const Chat: React.FC = () => {
               );
             })}
         </div>
-
         <form className={chatStyles.form} onSubmit={handleSubmit}>
           <input
             type="text"

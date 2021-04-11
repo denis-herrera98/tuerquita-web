@@ -1,11 +1,13 @@
 import chatStyles from "../styles/Chat.module.scss";
 import Spinner from "react-bootstrap/Spinner";
-import Summoner from "./../components/Summoner";
+import Summoner, { SummonerProps } from "./../components/Summoner";
 import { useAppDispatch } from "../redux/hooks";
-import { createConversation } from "../redux/chat/actions";
 import firebase from "../services/firebase";
 import { findRegionOPGG } from "../handlers/op_regions";
 import { useCollection } from "react-firebase-hooks/firestore";
+import { AppDispatch } from "../redux/store";
+import { createConversation } from "../redux/chat/actions";
+import { useEffect } from "react";
 
 interface IProps {
   partyId: string;
@@ -21,6 +23,14 @@ const ManagePartyColumn: React.FC<IProps> = ({ partyId }: IProps) => {
 
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    if (snapshot) {
+      snapshot.forEach((doc) => {
+        dispatch(createConversation(doc.data().id, partyId));
+      });
+    }
+  }, [snapshot]);
+
   return (
     <div className={chatStyles.left__column}>
       <h4> SOLICITANTES </h4>
@@ -31,7 +41,7 @@ const ManagePartyColumn: React.FC<IProps> = ({ partyId }: IProps) => {
           <Spinner className="mt-5" animation="border" />
         </>
       ) : (
-        <>{createSummoners(snapshot, dispatch, partyId)}</>
+        <>{createSummoners(snapshot, dispatch, partyId)} </>
       )}
     </div>
   );
@@ -41,15 +51,13 @@ export default ManagePartyColumn;
 
 const createSummoners = (
   data: firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>,
-  dispatch: any,
+  dispatch: AppDispatch,
   authorId: string
 ) => {
   const summoners = [];
 
   data.forEach((doc) => {
     const player = doc.data();
-
-    dispatch(createConversation(player.id, authorId));
 
     summoners.push(
       <Summoner
@@ -62,7 +70,7 @@ const createSummoners = (
         name={player.name}
         profileIconId={player.profileIconId}
         level={player.level}
-        region={findRegionOPGG(player.region)}
+        region={player.region}
         soloq={player.soloq}
         flex={player.flex}
         key={player.id}

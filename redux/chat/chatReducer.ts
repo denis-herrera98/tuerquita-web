@@ -8,7 +8,10 @@ export interface ChatState {
 
 interface Conversations {
   chatId: string;
+  auhorId: string;
+  recipient: string;
   messages: Message[];
+  newMessages: number;
 }
 
 export interface Message {
@@ -35,23 +38,33 @@ export const chatReducer = (
 ): ChatState => {
   switch (action.type) {
     case TYPES.SET_CURRENT_RECIPIENT: {
-      const currentConversation = state.chats.find((conversation) =>
+      const copy = [...state.chats];
+
+      const currentConversation = copy.find((conversation) =>
         conversation.chatId.includes(action.payload)
-      )?.chatId;
+      );
+
+      currentConversation.newMessages = 0;
 
       return {
         ...state,
+        chats: copy,
         currentRecipient: action.payload,
-        activeChat: currentConversation,
+        activeChat: currentConversation.chatId,
       };
     }
 
     case TYPES.CREATE_CHAT: {
-      if (!action.payload) return { ...state };
-
       if (!state.chats.find((value) => value.chatId === action.payload)) {
-        console.log("se creo una nueva conversacion", action.payload);
-        state.chats.push({ chatId: action.payload, messages: [] });
+        const authorIdAndRecipientId = action.payload.split("-");
+
+        state.chats.push({
+          chatId: action.payload,
+          messages: [],
+          newMessages: 0,
+          auhorId: authorIdAndRecipientId[0],
+          recipient: authorIdAndRecipientId[1],
+        });
       }
 
       return { ...state, activeChat: action.payload };
@@ -59,15 +72,22 @@ export const chatReducer = (
 
     case TYPES.ADD_MSG: {
       const copy = [...state.chats];
-      console.log("author", action.newMessage.authorId);
 
-      copy
-        .find(
-          (conversation) =>
-            conversation.chatId.includes(action.newMessage.authorId) &&
-            conversation.chatId.includes(action.newMessage.recipient)
-        )
-        ?.messages.unshift(action.newMessage);
+      const conversation = copy.find(
+        (conversation) =>
+          conversation.chatId.includes(action.newMessage.authorId) &&
+          conversation.chatId.includes(action.newMessage.recipient)
+      );
+
+      conversation.messages.unshift(action.newMessage);
+
+      if (
+        conversation.auhorId === action.newMessage.recipient &&
+        state.currentRecipient !== action.newMessage.recipient &&
+        state.currentRecipient !== action.newMessage.authorId
+      ) {
+        conversation.newMessages++;
+      }
 
       return {
         ...state,
