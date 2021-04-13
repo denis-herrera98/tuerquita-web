@@ -2,6 +2,7 @@ import { TYPES } from "../types";
 
 interface SummonerState {
   summoner: Summoner;
+  region: string;
   activeUserId: string;
 }
 
@@ -18,21 +19,27 @@ export interface Summoner {
 const initialState: SummonerState = {
   summoner: undefined,
   activeUserId: "",
+  region: "",
 };
 
 export interface SummonerActions {
   type: string;
   payload?: Summoner;
   idSummoner?: string;
+  region?: string;
 }
 
 export const summonerReducer = (
   state: SummonerState = initialState,
   action: SummonerActions
-) => {
+): SummonerState => {
   switch (action.type) {
     case TYPES.SELECT_SUMMONER: {
       return { ...state, summoner: action.payload };
+    }
+
+    case TYPES.SET_ACTIVE_REGION: {
+      return { ...state, region: action.region };
     }
 
     case TYPES.SET_ACTIVE_USER: {

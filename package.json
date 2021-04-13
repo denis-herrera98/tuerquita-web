@@ -22,7 +22,6 @@
     "react-firebase-hooks": "^3.0.2",
     "react-redux": "^7.2.2",
     "react-scroll": "^1.8.1",
-    "react-scrollbars-custom": "^4.0.25",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
     "sass": "^1.32.8",

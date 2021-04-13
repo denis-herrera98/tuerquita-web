@@ -14,3 +14,10 @@ export const setActiveUser = (id: string): SummonerActions => {
     idSummoner: id,
   };
 };
+
+export const setActiveRegion = (region: string): SummonerActions => {
+  return {
+    type: TYPES.SET_ACTIVE_REGION,
+    region,
+  };
+};
