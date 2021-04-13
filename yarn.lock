@@ -451,6 +451,11 @@
     "lodash" "^4.17.20"
     "lodash-es" "^4.17.20"
 
+"@sweetalert2/theme-borderless@^4.0.3":
+  "integrity" "sha512-qAWHutMOjlEaK8q3E5mvJYjwmQRI5nympoJnFQZCVGlN06rZ26gcuFXpkSz14JNweY3U1Oo9BzKFGFoFbe5gwQ=="
+  "resolved" "https://registry.npmjs.org/@sweetalert2/theme-borderless/-/theme-borderless-4.0.3.tgz"
+  "version" "4.0.3"
+
 "@types/classnames@^2.2.10":
   "integrity" "sha512-2koNhpWm3DgWRp5tpkiJ8JGc1xTn2q0l+jUNUE7oMKXUf5NpI9AIdC4kbjGNFBdHtcxBD18LAksoudAVhFKCjw=="
   "resolved" "https://registry.npmjs.org/@types/classnames/-/classnames-2.2.11.tgz"
@@ -2859,7 +2864,7 @@
     "uncontrollable" "^7.0.0"
     "warning" "^4.0.3"
 
-"react-dom@17.0.1":
+"react-dom@^16.0.0 || ^17.0.0", "react-dom@17.0.1":
   "integrity" "sha512-6eV150oJZ9U2t9svnsspTMrWNyHc6chX0KzDeAOXftRa8bNeOKTTfCJ7KorIwenkHd2xqVTBTCZd79yk/lx/Ug=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.1.tgz"
   "version" "17.0.1"
@@ -2931,7 +2936,7 @@
     "loose-envify" "^1.4.0"
     "prop-types" "^15.6.2"
 
-"react@*", "react@^16.8.3 || ^17", "react@>= 16.8.0", "react@17.0.1":
+"react@*", "react@^16.0.0 || ^17.0.0", "react@^16.8.3 || ^17", "react@>= 16.8.0", "react@17.0.1":
   "integrity" "sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.1.tgz"
   "version" "17.0.1"
@@ -3418,6 +3423,16 @@
   "version" "7.2.0"
   dependencies:
     "has-flag" "^4.0.0"
+
+"sweetalert2-react-content@^3.3.1":
+  "integrity" "sha512-wg26qMZdH9a99Rd/6CMH85CKClfYYy6zI41tsN40tsbP4gTHO4zhITbp9y2TTytboFSH2DgKsJzuuEvPikWJtA=="
+  "resolved" "https://registry.npmjs.org/sweetalert2-react-content/-/sweetalert2-react-content-3.3.1.tgz"
+  "version" "3.3.1"
+
+"sweetalert2@^10.16.0", "sweetalert2@^9.7.0 || ^10.15.4":
+  "integrity" "sha512-qJp4nIpx0MPDnAdY6MurwH/mAovfCzWo07hFoQ41C46XGLpNkxiqBbJDNdhGfMFwbDY1e9jfttNFxe5IsrkEtA=="
+  "resolved" "https://registry.npmjs.org/sweetalert2/-/sweetalert2-10.16.0.tgz"
+  "version" "10.16.0"
 
 "symbol-observable@^1.2.0":
   "integrity" "sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ=="

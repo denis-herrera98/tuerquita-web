@@ -1,5 +1,7 @@
 @use './variables';
 @import "~bootstrap/scss/bootstrap";
+@import '~@sweetalert2/theme-borderless/borderless.scss';
+
 
 @font-face {
     font-family: "Bungee Inline";
