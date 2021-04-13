@@ -3,8 +3,6 @@ import Image from "next/image";
 import { findRegionOPGG } from "../handlers/op_regions";
 import { useRouter } from "next/router";
 import { findFlexAndSoloqStatus } from "../helpers/find_ranked_data";
-import { useAppDispatch } from "../redux/hooks";
-import { setActiveRegion } from "../redux/summoner/actions";
 
 interface IProps {
   index: number;
@@ -16,11 +14,8 @@ const RowPlayer: React.FC<IProps> = ({ index, team, player }: IProps) => {
   const { soloq, flex } = findFlexAndSoloqStatus(player.rankedData);
   const region = findRegionOPGG(player.region);
   const router = useRouter();
-  const dispatch = useAppDispatch();
 
   const handleClick = () => {
-    dispatch(setActiveRegion(team.region));
-
     router.push(`/party/${team.id}`);
   };
 

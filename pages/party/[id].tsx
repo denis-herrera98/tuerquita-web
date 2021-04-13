@@ -16,8 +16,9 @@ import {
   updateSummonerRequest,
   rejectSummonerRequest,
 } from "../../handlers/lolapi";
+import { setActiveRegion } from "../../redux/summoner/actions";
 
-import Swal from "sweetalert2/src/sweetalert2.js";
+import Swal from "sweetalert2/dist/sweetalert2.js";
 
 const Party: React.FC = () => {
   const router = useRouter();
@@ -36,9 +37,12 @@ const Party: React.FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    dispatch(setActiveRegion(snapshot?.data().region));
+
     if (snapshot?.data().rejectedPlayers?.includes(accountSelected?.id)) {
       Swal.fire({
         title: "Lo sentimos, usted ha sido rechazado",
+        icon: "error",
         showConfirmButton: false,
       }).then(() => {
         router.replace("/partys/");
@@ -61,7 +65,9 @@ const Party: React.FC = () => {
       createRequest().then((wasRejected) => {
         if (wasRejected) {
           Swal.fire({
-            title: "Lo sentimos, usted ha sido rechazado",
+            title: "Error...",
+            text: "No se pudo crear la solicitud",
+            icon: "error",
             showConfirmButton: false,
           }).then(() => {
             router.replace("/partys/");
@@ -104,36 +110,3 @@ const Party: React.FC = () => {
 };
 
 export default Party;
-
-/*
-export const getStaticProps: GetStaticProps<any> = async (ctx) => {
-  const id = ctx.params.id as string;
-  if (id === "0") {
-    return { props: { team: null } };
-  }
-  const team = await getTeamById(id);
-  return { props: { team } };
-};
-
-export const getStaticPaths: GetStaticPaths<{ id: string }> = async () => {
-  const teams = await getLastestTeams();
-
-  if (!teams) {
-    const paths = { params: { id: "0" } };
-
-    return {
-      fallback: true,
-      paths,
-    };
-  }
-
-  const paths = teams.map((team: any) => {
-    return { params: { id: team.id.toString() } };
-  });
-
-  return {
-    fallback: true,
-    paths,
-  };
-};
-*/

@@ -20,7 +20,7 @@ const SelectAccount: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (name.length > 3) {
+    if (name.length > 3 && region) {
       setNotFound(false);
       setIsLoading(true);
       const data = await getSummonerData(name, regions[region]);
