@@ -1,14 +1,10 @@
 import navStyles from "../styles/Nav.module.scss";
 import Link from "next/link";
 import { Link as ScrollLink } from "react-scroll";
-import { useState } from "react";
+import { useRouter } from "next/router";
 
 const Nav: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleClick = () => {
-    setIsOpen(!isOpen);
-  };
+  const router = useRouter();
 
   return (
     <nav className={`${navStyles.navbar} `}>
@@ -18,18 +14,23 @@ const Nav: React.FC = () => {
             <a>TUERQUITA</a>
           </Link>
         </li>
-        <li className={`${navStyles.command__bottom} `}>
-          <ScrollLink
-            activeClass="active"
-            to="commands__section"
-            spy={true}
-            smooth={true}
-            offset={50}
-            duration={500}
-          >
-            Comandos
-          </ScrollLink>
-        </li>
+
+        {router.pathname === "/" ? (
+          <li className={`${navStyles.command__bottom} `}>
+            <ScrollLink
+              activeClass="active"
+              to="commands__section"
+              spy={true}
+              smooth={true}
+              offset={50}
+              duration={500}
+            >
+              Comandos
+            </ScrollLink>
+          </li>
+        ) : (
+          ""
+        )}
 
         <li>
           <Link href="/partys">
