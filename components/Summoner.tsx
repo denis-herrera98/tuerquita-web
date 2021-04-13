@@ -84,8 +84,10 @@ const Summoner: React.FC<SummonerProps> = ({
     dispatch(setActiveUser(summonerId));
   };
 
-  const onChatSelect = () => {
-    dispatch(setCurrentRecipient(summonerId));
+  const onChatSelect = (e: React.MouseEvent<HTMLElement>) => {
+    if (e.currentTarget === e.target) {
+      dispatch(setCurrentRecipient(summonerId));
+    }
   };
 
   return (
@@ -154,7 +156,11 @@ const Summoner: React.FC<SummonerProps> = ({
           </div>
         </div>
         {canDelete ? (
-          <div onClick={handleReject} className={summonerStyles.incorrect}>
+          <div
+            onClick={handleReject}
+            id={"incorrect"}
+            className={summonerStyles.incorrect}
+          >
             X
           </div>
         ) : (
