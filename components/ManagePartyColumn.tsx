@@ -4,6 +4,7 @@ import Summoner, { SummonerProps } from "./../components/Summoner";
 import { useAppDispatch } from "../redux/hooks";
 import firebase from "../services/firebase";
 import { findRegionOPGG } from "../handlers/op_regions";
+import { Scrollbar } from "react-scrollbars-custom";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { AppDispatch } from "../redux/store";
 import { createConversation } from "../redux/chat/actions";
@@ -41,8 +42,19 @@ const ManagePartyColumn: React.FC<IProps> = ({ partyId }: IProps) => {
           <Spinner className="mt-5" animation="border" />
         </>
       ) : (
-        <>{createSummoners(snapshot, dispatch, partyId)} </>
+        <Scrollbar>
+          <div className={chatStyles.summoners__container}>
+            {createSummoners(snapshot, dispatch, partyId)}
+            {createSummoners(snapshot, dispatch, partyId)}
+            {createSummoners(snapshot, dispatch, partyId)}
+            {createSummoners(snapshot, dispatch, partyId)}
+            {createSummoners(snapshot, dispatch, partyId)}
+            {createSummoners(snapshot, dispatch, partyId)}
+            {createSummoners(snapshot, dispatch, partyId)}
+          </div>
+        </Scrollbar>
       )}
+      <div className={chatStyles.finish__bottom}> LISTO </div>
     </div>
   );
 };

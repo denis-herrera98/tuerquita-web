@@ -1,4 +1,5 @@
 import { addMessage } from "../redux/chat/actions";
+import { Scrollbar } from "react-scrollbars-custom";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { useEffect, useState } from "react";
 import MessageBubble from "../components/MessageBubble";
@@ -47,19 +48,21 @@ const Chat: React.FC = () => {
   return (
     <div className={chatStyles.chat__container}>
       <div className={chatStyles.chat__background}>
-        <div className={chatStyles.messages__container}>
-          {chats
-            .find((conversation) => conversation.chatId === activeChat)
-            ?.messages.map((msg: Message, i) => {
-              return (
-                <MessageBubble
-                  key={i}
-                  msg={msg.msg}
-                  isSent={msg.authorId === authorId}
-                />
-              );
-            })}
-        </div>
+        <Scrollbar>
+          <div className={chatStyles.messages__container}>
+            {chats
+              .find((conversation) => conversation.chatId === activeChat)
+              ?.messages.map((msg: Message, i) => {
+                return (
+                  <MessageBubble
+                    key={i}
+                    msg={msg.msg}
+                    isSent={msg.authorId === authorId}
+                  />
+                );
+              })}
+          </div>
+        </Scrollbar>
         <form className={chatStyles.form} onSubmit={handleSubmit}>
           <input
             type="text"

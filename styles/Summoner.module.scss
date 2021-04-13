@@ -18,9 +18,9 @@
           }
 
           .account__selected {
-              top: -4px !important;
               background-color: lighten(variables.$summoner-background, 2%) !important;
               filter: none !important;
+              position: relative
           }
 
           .cursor__pointer {

@@ -1,5 +1,6 @@
 @use './variables.scss';
-
+@use './base/breakpoints';
+@use 'sass:map';
 
 
 .navbar {
@@ -10,9 +11,17 @@
 
     height: 65px;
     background: variables.$nav-color;
-    font-size: 24px;
+    font-size: 1.5rem;
     display: flex;
     align-items: center;
+
+    @media (max-width:  map.get(breakpoints.$breakpoints, 'table')){
+        font-size: 1.2rem;
+    }
+
+    @media (max-width:  map.get(breakpoints.$breakpoints, 'phone')){
+        font-size: 1rem;
+    }
 
     ul {
         display: flex;
@@ -27,7 +36,7 @@
 
             cursor: pointer;
 
-            @media (max-width: 620px){
+            @media (max-width:  map.get(breakpoints.$breakpoints, 'desktop')){
                 display: none;
             }
         }
@@ -49,9 +58,10 @@
             display: flex;
             align-items: center;
             padding: 0px 15px 0px 15px;
+
         }
 
     }
 
-
 }
+

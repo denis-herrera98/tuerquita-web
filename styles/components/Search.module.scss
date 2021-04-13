@@ -21,6 +21,7 @@
 }
 
 .dropbtn {
+    cursor: pointer;
     border: none;
     width: 100px;
     background: darken(variables.$msg-response, 5%);

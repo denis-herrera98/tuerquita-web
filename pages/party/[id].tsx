@@ -17,10 +17,11 @@ import {
   rejectSummonerRequest,
 } from "../../handlers/lolapi";
 
-const Party = () => {
+import Swal from "sweetalert2/src/sweetalert2.js";
+
+const Party: React.FC = () => {
   const router = useRouter();
   const { id: partyId } = router.query;
-  const [isLoading, setIsLoading] = useState(false);
   const accountSelected = useAppSelector(
     (state) => state.summonerReducer.summoner
   );
@@ -36,29 +37,35 @@ const Party = () => {
 
   useEffect(() => {
     if (snapshot?.data().rejectedPlayers?.includes(accountSelected?.id)) {
-      console.log("USTED HA SIDO RECHAZADO");
+      Swal.fire({
+        title: "Lo sentimos, usted ha sido rechazado",
+        showConfirmButton: false,
+      }).then(() => {
+        router.replace("/partys/");
+      });
     }
 
     async function createRequest() {
       try {
-        setIsLoading(true);
         const result = await addSummonerRequest(
           accountSelected,
           partyId.toString()
         );
-        setIsLoading(false);
         return result;
       } catch (e) {
         console.log(e);
-        setIsLoading(false);
       }
     }
 
     if (accountSelected && partyId) {
-      console.log("entro a esta verga");
       createRequest().then((wasRejected) => {
         if (wasRejected) {
-          console.log("el usuario fue rechazado");
+          Swal.fire({
+            title: "Lo sentimos, usted ha sido rechazado",
+            showConfirmButton: false,
+          }).then(() => {
+            router.replace("/partys/");
+          });
         } else {
           dispatch(createConversation(partyId.toString(), accountSelected.id));
           dispatch(setCurrentRecipient(partyId.toString()));

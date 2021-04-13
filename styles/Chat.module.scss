@@ -1,8 +1,15 @@
 @use './variables.scss';
+@use './base/breakpoints';
+@use 'sass:map';
 
 .container {
 
     display: flex;
+    width: 100%;
+
+    @media (max-width:  map.get(breakpoints.$breakpoints, 'table')){
+        flex-wrap: wrap;
+    }
 
     .left__column {
 
@@ -10,21 +17,68 @@
         max-height: calc(100vh - 65px);
         min-height: calc(100vh - 65px);
         background: variables.$primary-color;
-        width: 460px;
-        overflow: auto;
+        width: 415px;
         display: flex;
         flex-direction: column;
         align-items: center;
         flex-shrink: 0;
 
+
         > p {
             font-family: Roboto;
             padding: 1rem 2rem;
         }
+
+        .finish__bottom {
+            position: relative;
+            bottom: 0;
+            background: variables.$secondary-color;
+            cursor: pointer;
+            padding: .2rem;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: auto;
+            font-size: 2rem;
+        }
+
+        .summoners__container {
+            width: 100%;
+            margin-bottom: 2rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        @media (max-width:  map.get(breakpoints.$breakpoints, 'table')){
+            min-height: 0px;
+            width: 100%;
+
+            .summoners__container{
+                flex-direction: row;
+                padding: 0 1rem 1rem 1rem  ;
+
+
+            > * {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+
+            }
+
+            .finish__bottom {
+                display: none;
+            }
+
+
+
+        }
     }
 
     .chat__container {
-        padding: 2rem;
+        padding: 1.2rem;
         min-height: calc(100vh - 65px);
         max-height: calc(100vh - 65px);
         width: 100%;
@@ -55,16 +109,16 @@
             }
 
             .messages__container {
-            overflow: auto;
-            align-content: flex-end;
-            align-items: flex-end;
-            height: 100%;
-            display: flex;
-            flex-direction: column-reverse;
+                overflow: auto;
+                align-content: flex-end;
+                align-items: flex-end;
+                height: 100%;
+                display: flex;
+                flex-direction: column-reverse;
             }
 
             textarea:focus, input:focus{
-            outline: none;
+                outline: none;
             }
 
             .text__field {
@@ -101,5 +155,4 @@
             }
         }
     }
-
 }

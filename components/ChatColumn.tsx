@@ -28,25 +28,27 @@ const PartyChatColumn: React.FC<IProps> = ({
           <h4>{tittle}</h4>
           <p>{data.info}</p>
 
-          {data.data.map((player: any, index: number) => {
-            const { soloq, flex } = findFlexAndSoloqStatus(player.rankedData);
-            return (
-              <Summoner
-                cursorPointer={false}
-                isForChat={false}
-                isClickeable={false}
-                isNameClickeable={true}
-                id={player.id}
-                name={player.lolName}
-                profileIconId={player.profileIconId}
-                level={player.summonerLevel}
-                region={findRegionOPGG(player.region)}
-                soloq={soloq?.tier}
-                flex={flex?.tier}
-                key={index}
-              />
-            );
-          })}
+          <div className={chatStyles.summoners__container}>
+            {data.data.map((player: any, index: number) => {
+              const { soloq, flex } = findFlexAndSoloqStatus(player.rankedData);
+              return (
+                <Summoner
+                  cursorPointer={false}
+                  isForChat={false}
+                  isClickeable={false}
+                  isNameClickeable={true}
+                  id={player.id}
+                  name={player.lolName}
+                  profileIconId={player.profileIconId}
+                  level={player.summonerLevel}
+                  region={findRegionOPGG(player.region)}
+                  soloq={soloq?.tier}
+                  flex={flex?.tier}
+                  key={index}
+                />
+              );
+            })}
+          </div>
         </>
       )}
     </div>
