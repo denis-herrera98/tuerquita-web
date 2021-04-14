@@ -56,7 +56,7 @@ const Summoner: React.FC<SummonerProps> = ({
   );
 
   const handleReject = () => {
-    rejectSummonerRequest(summonerId, activeUser);
+    //rejectSummonerRequest(summonerId, activeUser);
   };
 
   useEffect(() => {
@@ -81,11 +81,11 @@ const Summoner: React.FC<SummonerProps> = ({
         level,
       })
     );
-    dispatch(setActiveUser(summonerId));
+    dispatch(setActiveUser(summonerId, "solicitude"));
   };
 
-  const onChatSelect = (e: React.MouseEvent<HTMLElement>) => {
-    if (e.currentTarget === e.target) {
+  const onChatSelect = (e) => {
+    if (e.target.id !== "incorrect") {
       dispatch(setCurrentRecipient(summonerId));
     }
   };
@@ -158,7 +158,7 @@ const Summoner: React.FC<SummonerProps> = ({
         {canDelete ? (
           <div
             onClick={handleReject}
-            id={"incorrect"}
+            id="incorrect"
             className={summonerStyles.incorrect}
           >
             X
