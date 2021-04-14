@@ -21,7 +21,7 @@ const ManageParty: React.FC = () => {
       showConfirmButton: false,
     });
     if (id) {
-      dispatch(setActiveUser(id.toString()));
+      dispatch(setActiveUser(id.toString(), "lkfteam"));
     }
   }, [id]);
 

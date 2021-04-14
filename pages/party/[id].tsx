@@ -39,16 +39,6 @@ const Party: React.FC = () => {
   useEffect(() => {
     dispatch(setActiveRegion(snapshot?.data().region));
 
-    if (snapshot?.data().rejectedPlayers?.includes(accountSelected?.id)) {
-      Swal.fire({
-        title: "Lo sentimos, usted ha sido rechazado",
-        icon: "error",
-        showConfirmButton: false,
-      }).then(() => {
-        router.replace("/partys/");
-      });
-    }
-
     async function createRequest() {
       try {
         const result = await addSummonerRequest(
@@ -62,21 +52,33 @@ const Party: React.FC = () => {
     }
 
     if (accountSelected && partyId) {
-      createRequest().then((wasRejected) => {
-        if (wasRejected) {
-          Swal.fire({
-            title: "Error...",
-            text: "No se pudo crear la solicitud",
-            icon: "error",
-            showConfirmButton: false,
-          }).then(() => {
-            router.replace("/partys/");
-          });
-        } else {
-          dispatch(createConversation(partyId.toString(), accountSelected.id));
-          dispatch(setCurrentRecipient(partyId.toString()));
-        }
-      });
+      if (snapshot?.data().rejectedPlayers?.includes(accountSelected?.id)) {
+        Swal.fire({
+          title: "Lo sentimos, usted ha sido rechazado",
+          icon: "error",
+          showConfirmButton: false,
+        }).then(() => {
+          router.replace("/partys/");
+        });
+      } else {
+        createRequest().then((wasRejected) => {
+          if (wasRejected) {
+            Swal.fire({
+              title: "Error...",
+              text: "No se pudo crear la solicitud",
+              icon: "error",
+              showConfirmButton: false,
+            }).then(() => {
+              router.replace("/partys/");
+            });
+          } else {
+            dispatch(
+              createConversation(partyId.toString(), accountSelected.id)
+            );
+            dispatch(setCurrentRecipient(partyId.toString()));
+          }
+        });
+      }
     }
 
     return () => {

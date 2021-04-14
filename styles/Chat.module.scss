@@ -8,14 +8,15 @@
     width: 100%;
 
     @media (max-width:  map.get(breakpoints.$breakpoints, 'table')){
-        flex-wrap: wrap;
+        flex-direction: column;
     }
+
+    max-height: calc(100vh - 65px);
+    min-height: calc(100vh - 65px);
 
     .left__column {
 
         padding-top: 2rem;
-        max-height: calc(100vh - 65px);
-        min-height: calc(100vh - 65px);
         background: variables.$primary-color;
         width: 415px;
         display: flex;
@@ -52,47 +53,42 @@
             flex-direction: column;
             align-items: center;
 
-                overflow: auto;
+            overflow: auto;
         }
 
 
         @media (max-width:  map.get(breakpoints.$breakpoints, 'table')){
             width: 100%;
+            min-height: 350px;
+            max-height: 350px;
 
             .summoners__container{
                 flex-direction: row;
                 padding: 0 1rem 1rem 1rem  ;
-
                 overflow: auto;
 
-            > * {
-                margin-left: 1rem;
-                margin-right: 1rem;
-            }
+                > * {
+                    margin-left: 1rem;
+                    margin-right: 1rem;
+                }
 
             }
 
             .finish__bottom {
                 display: none;
             }
-
-            min-height: 350px;
-            max-height: 350px;
-
-
-
         }
     }
 
     .chat__container {
         padding: 1.2rem;
-        min-height: calc(100vh - 65px);
-        max-height: calc(100vh - 65px);
         width: 100%;
+        flex-grow: 1;
+        display: flex;
 
         .chat__background {
             display: flex;
-            height: 100%;
+            flex: 1;
             background: variables.$primary-color;
             border-radius: 40px;
             flex-direction: column;
@@ -122,9 +118,6 @@
                 height: 100%;
                 display: flex;
                 flex-direction: column-reverse;
-
-
-
             }
 
             textarea:focus, input:focus{
