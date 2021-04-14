@@ -1,25 +1,27 @@
 import chatStyles from "../styles/Chat.module.scss";
+import { useRouter } from "next/router";
 import Spinner from "react-bootstrap/Spinner";
-import Summoner, { SummonerProps } from "./../components/Summoner";
+import Summoner from "./../components/Summoner";
 import { useAppDispatch } from "../redux/hooks";
 import firebase from "../services/firebase";
-import { findRegionOPGG } from "../handlers/op_regions";
-import { Scrollbar } from "react-scrollbars-custom";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { AppDispatch } from "../redux/store";
 import { createConversation } from "../redux/chat/actions";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { desactiveParty } from "../handlers/lolapi";
 
 interface IProps {
   partyId: string;
 }
 
 const ManagePartyColumn: React.FC<IProps> = ({ partyId }: IProps) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const [snapshot, loading, error] = useCollection(
     firebase
       .firestore()
       .collection("solicitude")
       .where("lkfteam", "==", partyId)
+      .where("state", "==", "ACTIVE")
   );
 
   const dispatch = useAppDispatch();
@@ -32,6 +34,13 @@ const ManagePartyColumn: React.FC<IProps> = ({ partyId }: IProps) => {
     }
   }, [snapshot]);
 
+  const handleOnClick = async () => {
+    setIsLoading(true);
+    await desactiveParty(partyId);
+    setIsLoading(false);
+    router.replace("/");
+  };
+
   return (
     <div className={chatStyles.left__column}>
       <h4> SOLICITANTES </h4>
@@ -42,19 +51,13 @@ const ManagePartyColumn: React.FC<IProps> = ({ partyId }: IProps) => {
           <Spinner className="mt-5" animation="border" />
         </>
       ) : (
-        <Scrollbar>
-          <div className={chatStyles.summoners__container}>
-            {createSummoners(snapshot, dispatch, partyId)}
-            {createSummoners(snapshot, dispatch, partyId)}
-            {createSummoners(snapshot, dispatch, partyId)}
-            {createSummoners(snapshot, dispatch, partyId)}
-            {createSummoners(snapshot, dispatch, partyId)}
-            {createSummoners(snapshot, dispatch, partyId)}
-            {createSummoners(snapshot, dispatch, partyId)}
-          </div>
-        </Scrollbar>
+        <div className={chatStyles.summoners__container}>
+          {createSummoners(snapshot)}
+        </div>
       )}
-      <div className={chatStyles.finish__bottom}> LISTO </div>
+      <div className={chatStyles.finish__bottom} onClick={handleOnClick}>
+        {isLoading ? <Spinner animation="border" /> : "LISTO"}
+      </div>
     </div>
   );
 };
@@ -62,9 +65,7 @@ const ManagePartyColumn: React.FC<IProps> = ({ partyId }: IProps) => {
 export default ManagePartyColumn;
 
 const createSummoners = (
-  data: firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>,
-  dispatch: AppDispatch,
-  authorId: string
+  data: firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>
 ) => {
   const summoners = [];
 

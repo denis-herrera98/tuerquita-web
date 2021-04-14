@@ -19,8 +19,6 @@ const ManageParty: React.FC = () => {
       icon: "info",
       text: "Si no tendras que crear el grupo de nuevo ",
       showConfirmButton: false,
-    }).then(() => {
-      console.log("se cerro esta picha");
     });
     if (id) {
       dispatch(setActiveUser(id.toString()));

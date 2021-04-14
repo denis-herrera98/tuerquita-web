@@ -37,7 +37,9 @@
             padding: .2rem;
             width: 100%;
             display: flex;
+            align-items: center;
             justify-content: center;
+            min-height: 4rem;
             margin-top: auto;
             font-size: 2rem;
         }
@@ -49,17 +51,19 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+
+                overflow: auto;
         }
 
 
         @media (max-width:  map.get(breakpoints.$breakpoints, 'table')){
-            min-height: 0px;
             width: 100%;
 
             .summoners__container{
                 flex-direction: row;
                 padding: 0 1rem 1rem 1rem  ;
 
+                overflow: auto;
 
             > * {
                 margin-left: 1rem;
@@ -71,6 +75,9 @@
             .finish__bottom {
                 display: none;
             }
+
+            min-height: 350px;
+            max-height: 350px;
 
 
 
@@ -115,6 +122,9 @@
                 height: 100%;
                 display: flex;
                 flex-direction: column-reverse;
+
+
+
             }
 
             textarea:focus, input:focus{
@@ -156,3 +166,4 @@
         }
     }
 }
+
