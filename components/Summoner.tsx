@@ -1,4 +1,5 @@
 import summonerStyles from "../styles/Summoner.module.scss";
+import Spinner from "react-bootstrap/Spinner";
 import Image from "next/image";
 import { selectedSummoner, setActiveUser } from "../redux/summoner/actions";
 import { setCurrentRecipient } from "../redux/chat/actions";
@@ -39,24 +40,22 @@ const Summoner: React.FC<SummonerProps> = ({
 }: SummonerProps) => {
   const [newMessagesCounter, setNewMessagesCounter] = useState(0);
 
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
-
   const accountSelected = useAppSelector(
     (state) => state.summonerReducer.summoner
   );
-
   const currentRecipient = useAppSelector(
     (state) => state.chatReducer.currentRecipient
   );
-
   const chatReducer = useAppSelector((state) => state.chatReducer);
-
   const activeUser = useAppSelector(
     (state) => state.summonerReducer.activeUserId
   );
-
-  const handleReject = () => {
-    //rejectSummonerRequest(summonerId, activeUser);
+  const handleReject = async () => {
+    setIsLoading(true);
+    await rejectSummonerRequest(summonerId, activeUser);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -86,7 +85,7 @@ const Summoner: React.FC<SummonerProps> = ({
 
   const onChatSelect = (e) => {
     if (e.target.id !== "incorrect") {
-      dispatch(setCurrentRecipient(summonerId));
+      dispatch(setCurrentRecipient(summonerId, name));
     }
   };
 
@@ -156,13 +155,20 @@ const Summoner: React.FC<SummonerProps> = ({
           </div>
         </div>
         {canDelete ? (
-          <div
-            onClick={handleReject}
-            id="incorrect"
-            className={summonerStyles.incorrect}
-          >
-            X
-          </div>
+          isLoading ? (
+            <Spinner
+              animation="border"
+              className={summonerStyles.spinner__incorrect}
+            />
+          ) : (
+            <div
+              onClick={handleReject}
+              id="incorrect"
+              className={summonerStyles.incorrect}
+            >
+              X
+            </div>
+          )
         ) : (
           ""
         )}

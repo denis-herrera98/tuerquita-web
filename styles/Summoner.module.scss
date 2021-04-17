@@ -147,6 +147,14 @@
                   border-right: 5px solid variables.$correct-color;
               }
 
+
+              .spinner__incorrect {
+                  position: absolute;
+                  margin-left: -20px;
+                  margin-top: -30px;
+                  margin-right: 15px;
+              }
+
               .incorrect {
                   position: absolute;
                   margin-left: -20px;
