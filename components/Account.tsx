@@ -1,5 +1,4 @@
 import accountStyles from "../styles/Account.module.scss";
-import { useAppSelector } from "../redux/hooks";
 import regions from "../data/regions.json";
 import { Col, Container } from "react-bootstrap";
 import OnlyOneSummonerCreator from "../logic/accounts";
@@ -7,13 +6,16 @@ import { getSummonerData } from "../handlers/lolapi";
 import { useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 
-const SelectAccount: React.FC = () => {
+interface IProps {
+  region: string;
+}
+
+const SelectAccount: React.FC<IProps> = ({ region }: IProps) => {
   const [name, setName] = useState("");
   const [account, setAccount] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [notFound, setNotFound] = useState(false);
 
-  const region = useAppSelector((state) => state.summonerReducer.region);
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   };
