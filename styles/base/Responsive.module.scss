@@ -1,0 +1,10 @@
+@use './breakpoints';
+@use "sass:map";
+
+.hide__table {
+
+    @media (max-width:  map.get(breakpoints.$breakpoints, 'table')){
+        display: none;
+    }
+
+}

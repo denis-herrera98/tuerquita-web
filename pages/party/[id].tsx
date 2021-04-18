@@ -1,10 +1,11 @@
 import chatStyles from "../../styles/Chat.module.scss";
+import { LkfTeam } from "../../interfaces/lkfteam";
 import Chat from "../../components/Chat";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import PartyChatColumn from "../../components/ChatColumn";
 import { useRouter } from "next/router";
 import firebase from "../../services/firebase";
-import { useDocumentOnce } from "react-firebase-hooks/firestore";
+import { useDocument } from "react-firebase-hooks/firestore";
 import SelectAccount from "../../components/Account";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useEffect } from "react";
@@ -19,7 +20,7 @@ const Party: React.FC = () => {
   const { id: partyId } = router.query;
 
   const dispatch = useAppDispatch();
-  const [snapshot, loading, error] = useDocumentOnce(
+  const [snapshot, loading, error] = useDocument(
     firebase.firestore().doc(`lkfteam/${partyId}`)
   );
 
@@ -38,9 +39,8 @@ const Party: React.FC = () => {
             text: "No se pudo crear la solicitud",
             icon: "error",
             showConfirmButton: false,
-          }).then(() => {
-            router.replace("/partys/");
           });
+          router.replace("/partys/");
         } else {
           dispatch(createConversation(partyId.toString(), accountSelected.id));
           dispatch(
@@ -56,7 +56,7 @@ const Party: React.FC = () => {
       {accountSelected ? (
         <div className={chatStyles.container}>
           <PartyChatColumn
-            data={snapshot?.data()}
+            data={snapshot?.data() as LkfTeam}
             error={error}
             partyId={partyId.toString()}
             loading={loading}

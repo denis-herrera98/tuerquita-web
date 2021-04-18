@@ -2,7 +2,7 @@ import summonerStyles from "../styles/Summoner.module.scss";
 import Spinner from "react-bootstrap/Spinner";
 import Image from "next/image";
 import { selectedSummoner, setActiveUser } from "../redux/summoner/actions";
-import { setCurrentRecipient } from "../redux/chat/actions";
+import { cleanChat, setCurrentRecipient } from "../redux/chat/actions";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { rejectSummonerRequest } from "../handlers/lolapi";
 import { useState, useEffect } from "react";
@@ -14,7 +14,7 @@ export interface SummonerProps {
   id: string;
   region?: string;
   profileIconId: string;
-  level: string;
+  level: number;
   canDelete?: boolean;
   isClickeable?: boolean;
   onHover?: boolean;
@@ -54,7 +54,10 @@ const Summoner: React.FC<SummonerProps> = ({
   );
   const handleReject = async () => {
     setIsLoading(true);
-    await rejectSummonerRequest(summonerId, activeUser);
+    const result = await rejectSummonerRequest(summonerId, activeUser);
+    if (result) {
+      dispatch(cleanChat(summonerId));
+    }
     setIsLoading(false);
   };
 

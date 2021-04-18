@@ -1,7 +1,7 @@
 import { TYPES } from "../types";
 import { ChatActions, Message } from "./chatReducer";
 
-export const changeChat = (msgTo: string) => {
+export const changeChat = (msgTo: string): ChatActions => {
   return {
     type: TYPES.CHANGE_CHAT,
     payload: msgTo,
@@ -30,9 +30,20 @@ export const addMessage = ({
   };
 };
 
-export const setCurrentRecipient = (msgTo: string): ChatActions => {
+export const setCurrentRecipient = (
+  msgTo: string,
+  name: string
+): ChatActions => {
   return {
     type: TYPES.SET_CURRENT_RECIPIENT,
     payload: msgTo,
+    recipientName: name,
+  };
+};
+
+export const cleanChat = (currentRecipient: string): ChatActions => {
+  return {
+    type: TYPES.CLEAN_CHAT,
+    payload: currentRecipient,
   };
 };

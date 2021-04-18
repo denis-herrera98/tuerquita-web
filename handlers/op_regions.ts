@@ -12,7 +12,7 @@ const regions = new Map<string, string>([
   ["ru.api.riotgames.com", "ru.op.gg"],
 ]);
 
-export const findRegionOPGG = (region: string) => {
+export const findRegionOPGG = (region: string): string => {
   if (!regions.has(region)) {
     return "";
   }

@@ -1,10 +1,13 @@
 import axios from "axios";
+import { LkfTeam } from "../interfaces/lkfteam";
 import { Summoner } from "../redux/summoner/summonerReducer";
 
 const BASE_URL = process.env.NEXT_PUBLIC_DOMAIN;
-console.log(BASE_URL);
 
-export const getTeamById = async (teamId: string | string[]) => {
+export const getTeamById = async (
+  teamId: string,
+  discordid: string
+): Promise<LkfTeam> => {
   const url = `${BASE_URL}teams/${teamId}`;
 
   try {
@@ -12,10 +15,11 @@ export const getTeamById = async (teamId: string | string[]) => {
     return response.data;
   } catch (e) {
     console.error(e);
+    return null;
   }
 };
 
-export const getLastestTeams = async () => {
+export const getLastestTeams = async (): Promise<any> => {
   const url = `${BASE_URL}teams/search/newest`;
 
   try {
@@ -26,12 +30,14 @@ export const getLastestTeams = async () => {
   }
 };
 
-export const getSummonerData = async (name: string, region: string) => {
+export const getSummonerData = async (
+  name: string,
+  region: string
+): Promise<any> => {
   axios.defaults.headers.common["Authorization"] =
     "Bearer U$nDaSfHzhBsHTGUGDZvcLyN65Cn4ruWBGDZvc2b$05$nDaSfHLyevYNN65Cn4ruWBDW7uCx0sbRWpLkBj";
 
   const url = `${BASE_URL}summoners/lolapi/${region}/${name}`;
-  console.log(url);
 
   try {
     const response = await axios.get(url);
@@ -41,7 +47,10 @@ export const getSummonerData = async (name: string, region: string) => {
   }
 };
 
-export const addSummonerRequest = async (summoner: Summoner, docId: string) => {
+export const addSummonerRequest = async (
+  summoner: Summoner,
+  docId: string
+): Promise<boolean> => {
   axios.defaults.headers.common["Authorization"] =
     "Bearer U$nDaSfHzhBsHTGUGDZvcLyN65Cn4ruWBGDZvc2b$05$nDaSfHLyevYNN65Cn4ruWBDW7uCx0sbRWpLkBj";
 
@@ -59,7 +68,7 @@ export const updateSummonerRequest = async (
   summonerId: string,
   lkfteamId: string,
   path: string
-) => {
+): Promise<void> => {
   axios.defaults.headers.common["Authorization"] =
     "Bearer U$nDaSfHzhBsHTGUGDZvcLyN65Cn4ruWBGDZvc2b$05$nDaSfHLyevYNN65Cn4ruWBDW7uCx0sbRWpLkBj";
 
@@ -75,7 +84,7 @@ export const updateSummonerRequest = async (
 export const rejectSummonerRequest = async (
   summonerId: string,
   lkfteamId: string
-) => {
+): Promise<boolean> => {
   axios.defaults.headers.common["Authorization"] =
     "Bearer U$nDaSfHzhBsHTGUGDZvcLyN65Cn4ruWBGDZvc2b$05$nDaSfHLyevYNN65Cn4ruWBDW7uCx0sbRWpLkBj";
 
@@ -83,6 +92,21 @@ export const rejectSummonerRequest = async (
 
   try {
     await axios.post(url, { summonerId, lkfteamId });
+    return true;
+  } catch (e) {
+    console.error(e.response);
+    return false;
+  }
+};
+
+export const desactiveParty = async (lkfteamId: string): Promise<void> => {
+  axios.defaults.headers.common["Authorization"] =
+    "Bearer U$nDaSfHzhBsHTGUGDZvcLyN65Cn4ruWBGDZvc2b$05$nDaSfHLyevYNN65Cn4ruWBDW7uCx0sbRWpLkBj";
+
+  const url = `${BASE_URL}teams/desactive`;
+
+  try {
+    await axios.post(url, { lkfteamId });
   } catch (e) {
     console.error(e.response);
   }

@@ -4,6 +4,7 @@ export interface ChatState {
   activeChat: string;
   chats: Conversations[];
   currentRecipient: string;
+  recipientName: string;
 }
 
 interface Conversations {
@@ -23,11 +24,13 @@ export interface Message {
 const initialState: ChatState = {
   activeChat: "",
   currentRecipient: "",
+  recipientName: "",
   chats: [],
 };
 
 export interface ChatActions {
   type: string;
+  recipientName?: string;
   payload: string;
   newMessage?: Message;
 }
@@ -51,6 +54,7 @@ export const chatReducer = (
         chats: copy,
         currentRecipient: action.payload,
         activeChat: currentConversation.chatId,
+        recipientName: action.recipientName,
       };
     }
 
@@ -79,20 +83,37 @@ export const chatReducer = (
           conversation.chatId.includes(action.newMessage.recipient)
       );
 
-      conversation.messages.unshift(action.newMessage);
+      if (conversation) {
+        conversation.messages.unshift(action.newMessage);
 
-      if (
-        conversation.auhorId === action.newMessage.recipient &&
-        state.currentRecipient !== action.newMessage.recipient &&
-        state.currentRecipient !== action.newMessage.authorId
-      ) {
-        conversation.newMessages++;
+        if (
+          conversation.auhorId === action.newMessage.recipient &&
+          state.currentRecipient !== action.newMessage.recipient &&
+          state.currentRecipient !== action.newMessage.authorId
+        ) {
+          conversation.newMessages++;
+        }
+
+        return {
+          ...state,
+          chats: copy,
+        };
       }
 
-      return {
-        ...state,
-        chats: copy,
-      };
+      return { ...state };
+    }
+
+    case TYPES.CLEAN_CHAT: {
+      if (state.currentRecipient === action.payload) {
+        return {
+          ...state,
+          activeChat: "",
+          currentRecipient: "",
+          recipientName: "",
+        };
+      }
+
+      return { ...state };
     }
 
     default: {

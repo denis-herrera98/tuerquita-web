@@ -4,7 +4,7 @@ import { useAppSelector } from "../redux/hooks";
 
 const SocketContext = React.createContext<Socket>(null);
 
-export function useSocket() {
+export function useSocket(): Socket {
   return useContext(SocketContext);
 }
 
@@ -14,17 +14,20 @@ interface IProps {
 
 const SocketProvider: React.FC = ({ children }: IProps) => {
   const [socket, setSocket] = useState<Socket>();
-  const id = useAppSelector((state) => state.summonerReducer.activeUserId);
+  const { activeUserId, activeCollection } = useAppSelector(
+    (state) => state.summonerReducer
+  );
 
   useEffect((): (() => void) => {
-    if (id) {
-      const newSocket = io("http://localhost:5000", { query: { id } });
+    if (activeUserId) {
+      const newSocket = io("http://localhost:5000", {
+        query: { id: activeUserId, collection: activeCollection },
+      });
       setSocket(newSocket);
-      console.log("id en socket provider", id);
 
       return () => newSocket.close();
     }
-  }, [id]);
+  }, [activeUserId, activeCollection]);
 
   return (
     <SocketContext.Provider value={socket}>{children}</SocketContext.Provider>

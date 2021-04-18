@@ -14,13 +14,12 @@ const Chat: React.FC = () => {
   const [msg, setMessage] = useState("");
   const socket = useSocket();
   const dispatch = useAppDispatch();
-  const { chats, activeChat, currentRecipient } = useAppSelector(
+  const { chats, activeChat, currentRecipient, recipientName } = useAppSelector(
     (state) => state.chatReducer
   );
   const authorId = useAppSelector(
     (state) => state.summonerReducer.activeUserId
   );
-
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMessage(event.target.value);
   };
@@ -38,7 +37,6 @@ const Chat: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!msg || !msg.trim()) return;
-
     dispatch(addMessage({ msg, authorId, recipient: currentRecipient }));
     socket.emit("send-message", { msg, currentRecipient, authorId });
     setMessage("");
@@ -61,14 +59,13 @@ const Chat: React.FC = () => {
                 );
               })}
           </div>
-
           <form className={chatStyles.form} onSubmit={handleSubmit}>
             <input
               type="text"
               className={chatStyles.text__field}
               onChange={handleOnChange}
               value={msg}
-              placeholder={`#Mensaje para {msgTo}`}
+              placeholder={`#Mensaje para ${recipientName}`}
             />
           </form>
         </div>

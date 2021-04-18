@@ -2,6 +2,7 @@
 
 
 .hover__effect {
+
     position: relative;
               * {
                   transition: all 0.3s ease-out;
@@ -12,9 +13,6 @@
                   background-color: lighten(variables.$summoner-background, 1%);
               }
 
-              &:hover:before {
-                  transform: scale(2.15);
-              }
           }
 
           .account__selected {
@@ -33,7 +31,6 @@
                   from {
                       transform: scale(0);
                       opacity: 0;
-                      background: #5470B0;
                   }
               }
 
@@ -42,7 +39,7 @@
               border-radius: 50px;
               padding: 1rem;
               filter: drop-shadow(0px 2px 2px black);
-              animation: expand .5s ease-in-out;
+              animation: expand .5s ease-in-out ;
 
               .grid {
                   display: grid;

@@ -4,6 +4,7 @@ interface SummonerState {
   summoner: Summoner;
   region: string;
   activeUserId: string;
+  activeCollection: string;
 }
 
 export interface Summoner {
@@ -11,7 +12,7 @@ export interface Summoner {
   flex: string;
   soloq: string;
   id: string;
-  level: string;
+  level: number;
   region: string;
   profileIconId: string;
 }
@@ -19,6 +20,7 @@ export interface Summoner {
 const initialState: SummonerState = {
   summoner: undefined,
   activeUserId: "",
+  activeCollection: "",
   region: "",
 };
 
@@ -26,6 +28,7 @@ export interface SummonerActions {
   type: string;
   payload?: Summoner;
   idSummoner?: string;
+  activeCollection?: string;
   region?: string;
 }
 
@@ -43,7 +46,11 @@ export const summonerReducer = (
     }
 
     case TYPES.SET_ACTIVE_USER: {
-      return { ...state, activeUserId: action.idSummoner };
+      return {
+        ...state,
+        activeUserId: action.idSummoner,
+        activeCollection: action.activeCollection,
+      };
     }
 
     case TYPES.DELETE_SUMMONER: {

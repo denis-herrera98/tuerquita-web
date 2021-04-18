@@ -8,10 +8,14 @@ export const selectedSummoner = (summoner: Summoner): SummonerActions => {
   };
 };
 
-export const setActiveUser = (id: string): SummonerActions => {
+export const setActiveUser = (
+  id: string,
+  activeCollection: string
+): SummonerActions => {
   return {
     type: TYPES.SET_ACTIVE_USER,
     idSummoner: id,
+    activeCollection,
   };
 };
 

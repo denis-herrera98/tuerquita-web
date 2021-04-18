@@ -28,7 +28,7 @@ const RowPlayer: React.FC<IProps> = ({ index, team, player }: IProps) => {
       >
         <a
           target="_blank"
-          href={`https://${region}summoner/userName=${player.lolName}`}
+          href={`https://${region}/userName=${player.lolName}`}
         >
           {player.lolName}
         </a>
@@ -73,6 +73,7 @@ const RowPlayer: React.FC<IProps> = ({ index, team, player }: IProps) => {
     </>
   );
 };
+
 export default RowPlayer;
 
 const getBackgroundColor = (index: number) => {
