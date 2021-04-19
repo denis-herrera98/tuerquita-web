@@ -2,6 +2,18 @@
 @use './base/breakpoints';
 @use 'sass:map';
 
+.font__bold {
+    font-weight: bold;
+    font-family: Roboto;
+    cursor: pointer;
+}
+
+.opacity__low {
+    font-family: Roboto;
+    opacity: 80%;
+}
+
+
 .container {
 
     display: flex;

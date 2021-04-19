@@ -16,7 +16,7 @@ const ManageParty: React.FC = () => {
 
   useEffect(() => {
     return () => {
-      desactiveParty(id.toString());
+      desactiveParty(id?.toString());
     };
   }, []);
 

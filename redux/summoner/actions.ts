@@ -25,3 +25,9 @@ export const setActiveRegion = (region: string): SummonerActions => {
     region,
   };
 };
+
+export const deleteSummoner = (): SummonerActions => {
+  return {
+    type: TYPES.CHANGE_USER,
+  };
+};

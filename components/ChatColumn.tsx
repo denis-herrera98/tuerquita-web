@@ -10,6 +10,7 @@ import { findFlexAndSoloqStatus } from "../helpers/find_ranked_data";
 import { useAppSelector } from "../redux/hooks";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import { LkfTeam, Player } from "../interfaces/lkfteam";
+import ChangeSummoner from "./../components/ChangeSummoner";
 
 interface IProps {
   partyId: string;
@@ -28,7 +29,6 @@ const PartyChatColumn: React.FC<IProps> = ({
     (state) => state.summonerReducer.summoner
   );
   const router = useRouter();
-
   useEffect(() => {
     return () => {
       updateSummonerRequest(accountSelected.id, partyId.toString(), "inactive");
@@ -40,7 +40,7 @@ const PartyChatColumn: React.FC<IProps> = ({
 
     if (!data.active) {
       Swal.fire({
-        title: "El grupo cerro",
+        title: "El grupo cerró",
         icon: "error",
         showConfirmButton: false,
       });
@@ -89,6 +89,7 @@ const PartyChatColumn: React.FC<IProps> = ({
               );
             })}
           </div>
+          <ChangeSummoner name={accountSelected.name} />
         </>
       )}
     </div>

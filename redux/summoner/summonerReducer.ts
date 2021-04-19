@@ -41,6 +41,10 @@ export const summonerReducer = (
       return { ...state, summoner: action.payload };
     }
 
+    case TYPES.CHANGE_USER: {
+      return { ...state, summoner: undefined };
+    }
+
     case TYPES.SET_ACTIVE_REGION: {
       return { ...state, region: action.region };
     }

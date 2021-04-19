@@ -6,6 +6,7 @@ import PartyChatColumn from "../../components/ChatColumn";
 import { useRouter } from "next/router";
 import firebase from "../../services/firebase";
 import { useDocument } from "react-firebase-hooks/firestore";
+import { useState } from "react";
 import SelectAccount from "../../components/Account";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useEffect } from "react";
@@ -24,6 +25,7 @@ const Party: React.FC = () => {
     firebase.firestore().doc(`lkfteam/${partyId}`)
   );
 
+  const [showMessage, setShowMessage] = useState(true);
   const accountSelected = useAppSelector(
     (state) => state.summonerReducer.summoner
   );
@@ -49,6 +51,16 @@ const Party: React.FC = () => {
         }
       })
       .catch((e) => console.error(e));
+
+    if (showMessage) {
+      Swal.fire({
+        title: "Aviso importante",
+        text: "No cierres la pestaña, si no tendras que unirte de nuevo",
+        icon: "info",
+        showConfirmButton: false,
+      });
+      setShowMessage(false);
+    }
   }, [partyId, accountSelected]);
 
   return (
