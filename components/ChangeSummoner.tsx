@@ -14,7 +14,7 @@ const ChangeSummoner: React.FC<IProps> = ({ name }) => {
   };
 
   return (
-    <p className="mt-5">
+    <p>
       Cuenta: <span className={chatStyles.opacity__low}>{name} |</span>{" "}
       <span onClick={changeAccount} className={chatStyles.font__bold}>
         Cambiar cuenta

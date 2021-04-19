@@ -71,8 +71,7 @@
 
         @media (max-width:  map.get(breakpoints.$breakpoints, 'table')){
             width: 100%;
-            min-height: 350px;
-            max-height: 350px;
+            min-height: 380px;
 
             .summoners__container{
                 flex-direction: row;

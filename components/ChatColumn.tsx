@@ -71,6 +71,7 @@ const PartyChatColumn: React.FC<IProps> = ({
           <div className={chatStyles.summoners__container}>
             {data.data.map((player: Player, index: number) => {
               const { soloq, flex } = findFlexAndSoloqStatus(player.rankedData);
+
               return (
                 <Summoner
                   cursorPointer={false}

@@ -6,12 +6,12 @@ export interface LkfTeam {
   rejectedPlayers: string[];
   author: Author;
   data: Player[];
-  discordid: string;
 }
 
 interface Author {
   avatar: string;
   name: string;
+  discordid: string;
 }
 
 export interface Player {

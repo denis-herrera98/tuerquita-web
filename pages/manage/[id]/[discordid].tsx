@@ -13,12 +13,7 @@ const ManageParty: React.FC = () => {
   const { id, discordid } = router.query;
   const dispatch = useAppDispatch();
   const [showMessage, setShowMessage] = useState(true);
-
-  useEffect(() => {
-    return () => {
-      desactiveParty(id?.toString());
-    };
-  }, []);
+  const [allCorrect, setAllCorrect] = useState();
 
   useEffect(() => {
     if (!router.isReady) {
@@ -33,6 +28,17 @@ const ManageParty: React.FC = () => {
           title: "Error...",
           icon: "error",
           text: "Lo sentimos, ocurrió un error",
+          showConfirmButton: false,
+        });
+        router.replace("/");
+        return;
+      }
+
+      if (team.author.discordid !== discordid.toString()) {
+        Swal.fire({
+          title: "Error...",
+          icon: "error",
+          text: "Al parecer no eres el dueño del grupo",
           showConfirmButton: false,
         });
         router.replace("/");
