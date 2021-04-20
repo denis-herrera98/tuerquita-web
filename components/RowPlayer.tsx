@@ -28,7 +28,7 @@ const RowPlayer: React.FC<IProps> = ({ index, team, player }: IProps) => {
       >
         <a
           target="_blank"
-          href={`https://${region}/userName=${player.lolName}`}
+          href={`https://${region}/summoner/userName=${player.lolName}`}
         >
           {player.lolName}
         </a>

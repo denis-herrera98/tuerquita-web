@@ -69,7 +69,7 @@ const Summoner: React.FC<SummonerProps> = ({
         )?.newMessages
       );
     }
-  }, [chatReducer]);
+  }, [chatReducer, summonerId]);
 
   const handleSelect = () => {
     dispatch(

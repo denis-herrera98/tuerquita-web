@@ -20,8 +20,8 @@ const SocketProvider: React.FC = ({ children }: IProps) => {
 
   useEffect((): (() => void) => {
     if (activeUserId) {
-      const url = "http://localhost:5000";
-      //const url = process.env.NEXT_PUBLIC_CHAT_SERVER;
+      //const url = "http://localhost:5000";
+      const url = process.env.NEXT_PUBLIC_CHAT_SERVER;
       const newSocket = io(url, {
         query: { id: activeUserId, collection: activeCollection },
       });

@@ -18,3 +18,24 @@ export const findRegionOPGG = (region: string): string => {
   }
   return regions.get(region);
 };
+
+const shortsRegions = new Map<string, string>([
+  ["BR", "br.op.gg"],
+  ["EUNE", "eune.op.gg"],
+  ["EUW", "euw.op.gg"],
+  ["JP", "jp.op.gg"],
+  ["KR", "op.gg"],
+  ["LAN", "lan.op.gg"],
+  ["LAS", "las.op.gg"],
+  ["NA", "na.op.gg"],
+  ["OCE", "oce.op.gg"],
+  ["TR", "tr.op.gg"],
+  ["RU", "ru.op.gg"],
+]);
+
+export const shortRegionNameToOPGGPath = (region: string): string => {
+  if (!shortsRegions.has(region)) {
+    return "";
+  }
+  return shortsRegions.get(region);
+};

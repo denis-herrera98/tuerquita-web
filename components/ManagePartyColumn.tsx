@@ -8,6 +8,7 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import { createConversation } from "../redux/chat/actions";
 import { useEffect, useState } from "react";
 import { desactiveParty } from "../handlers/lolapi";
+import { shortRegionNameToOPGGPath } from "../handlers/op_regions";
 
 interface IProps {
   partyId: string;
@@ -32,7 +33,7 @@ const ManagePartyColumn: React.FC<IProps> = ({ partyId }: IProps) => {
         dispatch(createConversation(doc.data().id, partyId));
       });
     }
-  }, [snapshot]);
+  }, [snapshot, dispatch, partyId]);
 
   const handleOnClick = async () => {
     setIsLoading(true);
@@ -83,7 +84,7 @@ const createSummoners = (
         name={player.name}
         profileIconId={player.profileIconId}
         level={player.level}
-        region={player.region}
+        region={shortRegionNameToOPGGPath(player.region)}
         soloq={player.soloq}
         flex={player.flex}
         key={player.id}
