@@ -6,14 +6,13 @@ import { useAppDispatch } from "../../../redux/hooks";
 import { setActiveUser } from "../../../redux/summoner/actions";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2/dist/sweetalert2.js";
-import { desactiveParty, getTeamById } from "../../../handlers/lolapi";
+import { getTeamById } from "../../../handlers/lolapi";
 
 const ManageParty: React.FC = () => {
   const router = useRouter();
   const { id, discordid } = router.query;
   const dispatch = useAppDispatch();
   const [showMessage, setShowMessage] = useState(true);
-  const [allCorrect, setAllCorrect] = useState();
 
   useEffect(() => {
     if (!router.isReady) {
@@ -71,7 +70,7 @@ const ManageParty: React.FC = () => {
       }
     }
     fetchTeam();
-  }, [id, discordid]);
+  }, [id, discordid, dispatch, router, showMessage]);
 
   if (!id) {
     return <></>;

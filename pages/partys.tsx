@@ -6,16 +6,10 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import Party from "../components/Party";
 import Spinner from "react-bootstrap/Spinner";
-import { useAppSelector } from "../redux/hooks";
-import ChangeSummoner from "../components/ChangeSummoner";
 
 const Partys: React.FC = () => {
   const [teams, setTeams] = useState([]);
   const [region, setRegion] = useState("LAN");
-
-  const accountSelected = useAppSelector(
-    (state) => state.summonerReducer.summoner
-  );
 
   const [querySnapshot, loading, error] = useCollection(
     firebase
@@ -24,7 +18,7 @@ const Partys: React.FC = () => {
       .where("region", "==", region)
       .where("active", "==", true)
       .orderBy("timestamp", "desc")
-      .limit(10)
+      .limit(15)
   );
 
   const handleSelect = (value: string) => {
