@@ -1,7 +1,7 @@
 $base-color:  #233040;
 $primary-color: #2A3747;
 $secondary-color: #D65A31;
-$nav-color: #000000;
+$nav-color: darken($base-color, 7%);
 $msg-response: #526274;
 $msg-sent: #526274;
 $text-field-color: #324052;
