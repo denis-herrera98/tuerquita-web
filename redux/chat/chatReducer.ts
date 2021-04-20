@@ -71,7 +71,7 @@ export const chatReducer = (
         });
       }
 
-      return { ...state, activeChat: action.payload };
+      return { ...state };
     }
 
     case TYPES.ADD_MSG: {
