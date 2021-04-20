@@ -42,7 +42,12 @@ export const summonerReducer = (
     }
 
     case TYPES.CHANGE_USER: {
-      return { ...state, summoner: undefined };
+      return {
+        ...state,
+        summoner: undefined,
+        activeUserId: "",
+        activeCollection: "",
+      };
     }
 
     case TYPES.SET_ACTIVE_REGION: {

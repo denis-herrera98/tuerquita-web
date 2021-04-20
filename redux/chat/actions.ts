@@ -47,3 +47,9 @@ export const cleanChat = (currentRecipient: string): ChatActions => {
     payload: currentRecipient,
   };
 };
+
+export const cleanAllChats = (): ChatActions => {
+  return {
+    type: TYPES.RESET_CHAT_REDUCER,
+  };
+};

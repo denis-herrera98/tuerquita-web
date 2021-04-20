@@ -31,7 +31,7 @@ const initialState: ChatState = {
 export interface ChatActions {
   type: string;
   recipientName?: string;
-  payload: string;
+  payload?: string;
   newMessage?: Message;
 }
 
@@ -114,6 +114,16 @@ export const chatReducer = (
       }
 
       return { ...state };
+    }
+
+    case TYPES.RESET_CHAT_REDUCER: {
+      return {
+        ...state,
+        activeChat: "",
+        currentRecipient: "",
+        recipientName: "",
+        chats: [],
+      };
     }
 
     default: {
