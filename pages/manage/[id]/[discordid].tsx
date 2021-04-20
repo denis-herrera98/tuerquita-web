@@ -34,7 +34,7 @@ const ManageParty: React.FC = () => {
         return;
       }
 
-      if (team.author.discordid !== discordid.toString()) {
+      if (team.author.id !== discordid.toString()) {
         Swal.fire({
           title: "Error...",
           icon: "error",

@@ -11,7 +11,7 @@ export interface LkfTeam {
 interface Author {
   avatar: string;
   name: string;
-  discordid: string;
+  id: string;
 }
 
 export interface Player {
