@@ -6,38 +6,47 @@ import { Row, Col, Container } from "react-bootstrap";
 const Home: React.FC = () => {
   return (
     <>
-      <Container>
-        <div
-          id="description__section"
-          className={homeStyles.description__section}
-        >
-          <div>
-            <h2>Tuerquita</h2>
-            <h2>Bot de League of Legends</h2>
-          </div>
+      <div
+        id="description__section"
+        className={homeStyles.description__section}
+      >
+        <div>
+          <h4>Tuerquita</h4>
+          <h4>Bot de League of Legends</h4>
+        </div>
+        <div>
           <div className={homeStyles.logo}>
-            <Image
-              src="/icon.png"
-              alt="Tuerquita icon"
-              width={254}
-              height={259}
-            />
-          </div>
-          <div className={homeStyles.short__description}>
-            <h3> Objetivo principal </h3>
-            <Row className="justify-content-center">
-              <Col xs="6">
-                <p>
-                  Este bot de discord te ayuda a buscar invocadores con los
-                  cuales jugar entre todos los servidores de Discord en él que
-                  esté
-                </p>
-              </Col>
-            </Row>
+            <div className={homeStyles.party_gif}>
+              <Image
+                src="/party_gif.gif"
+                alt="Tuerquita icon"
+                width="802"
+                height="590"
+              />
+            </div>
+            <div className={homeStyles.icon}>
+              <Image
+                src="/favicon.ico"
+                alt="Tuerquita icon"
+                width="254"
+                height="259"
+              />
+            </div>
           </div>
         </div>
-      </Container>
 
+        <div className={homeStyles.short__description}>
+          <h4> Objetivo principal </h4>
+          <Row className="justify-content-center">
+            <Col xs="6">
+              <p>
+                Este bot de discord te ayuda a buscar invocadores con los cuales
+                jugar entre todos los servidores de Discord en él que esté
+              </p>
+            </Col>
+          </Row>
+        </div>
+      </div>
       <div id="commands__section" className={homeStyles.commands__section}>
         <Container>
           <div className={homeStyles.titles}>
@@ -82,3 +91,5 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+
+const tablePhoneView = () => {};

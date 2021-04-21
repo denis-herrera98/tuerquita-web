@@ -1,7 +1,10 @@
 @use './variables.scss';
+@use './base/breakpoints';
+@use 'sass:map';
 
 .description__section {
 
+    padding: 2rem;
     display: flex;
     min-height: calc(100vh - 65px);
     align-items: center;
@@ -10,22 +13,36 @@
     justify-content: space-evenly;
 
     .logo {
-        margin-bottom: 50px;
+
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+
+        .icon {
+            display: none;
+        }
+
+        @media (max-width:  map.get(breakpoints.$breakpoints, 'table')){
+            .party_gif {
+                display: none;
+            }
+
+            .icon {
+                display: block;
+            }
+        }
+
+
     }
 
     .short__description {
 
-        h3 {
-
-            margin-top: auto;
-            margin-bottom: 50px;
+        h4 {
             color: variables.$secondary-color;
-
         }
 
         p {
             font-family: Roboto;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
     }
 }
@@ -43,8 +60,6 @@
         text-align: start;
         font-family: Roboto;
     }
-
-
 }
 
 .titles {

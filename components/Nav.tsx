@@ -22,7 +22,6 @@ const Nav: React.FC = () => {
               to="commands__section"
               spy={true}
               smooth={true}
-              offset={50}
               duration={500}
             >
               Comandos
