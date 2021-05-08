@@ -46,7 +46,7 @@ const Partys: React.FC = () => {
         Guía: <span> Como usar el buscador de grupos </span>
       </p>
       <div className={searchStyles.search__field}>
-        <p className="m-5">Ver: </p>
+        <p className="m-5">Región: </p>
 
         <div className={`${searchStyles.region__selector}`}>
           <div className={`${searchStyles.dropbtn}`}>
@@ -73,7 +73,7 @@ const Partys: React.FC = () => {
           <Spinner className="m-auto mt-5 " animation="border" />
         ) : querySnapshot.empty ? (
           <p className="text-center mt-5">
-            No hay grupos disponibles en este momento{" "}
+            No hay grupos disponibles en este momento
           </p>
         ) : (
           teams.map((team, index) => {

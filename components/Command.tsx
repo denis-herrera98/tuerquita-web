@@ -1,5 +1,4 @@
-import { Row, Col, Container } from "react-bootstrap";
-import { useState } from "react";
+import { Col } from "react-bootstrap";
 import commandStyles from "../styles/Command.module.scss";
 
 interface IProps {
@@ -7,7 +6,7 @@ interface IProps {
   description: string;
 }
 
-const Command = ({ label, description }: IProps) => {
+const Command: React.FC<IProps> = ({ label, description }: IProps) => {
   return (
     <div className={commandStyles.command__container}>
       <Col md="8" xs="10" lg="6">
