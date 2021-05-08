@@ -26,6 +26,7 @@ const Party: React.FC = () => {
   );
 
   const [showMessage, setShowMessage] = useState(true);
+
   const accountSelected = useAppSelector(
     (state) => state.summonerReducer.summoner
   );
@@ -40,7 +41,6 @@ const Party: React.FC = () => {
             title: "Error...",
             text: "No se pudo crear la solicitud",
             icon: "error",
-            showConfirmButton: false,
           });
           router.replace("/partys/");
         } else {

@@ -25,18 +25,18 @@
         grid-column: span 3;
 
 
-        .btn__join {
-            cursor: pointer;
-            padding: .3rem;
-            background: variables.$secondary-color;
-            color: white;
-            text-align: center;
-            border-radius: 20px;
-            margin: 1rem 0 1rem 1.6rem;
-            padding: .3rem .5rem;
+    .btn__join {
+        cursor: pointer;
+        padding: .3rem;
+        background: variables.$secondary-color;
+        color: white;
+        text-align: center;
+        border-radius: 20px;
+        margin: 1rem 0 1rem 1.6rem;
+        padding: .3rem .5rem;
 
-        }
     }
+}
 
     p, a {
         overflow-wrap: anywhere;
@@ -49,9 +49,9 @@
     }
 
 
-    a:hover {
-        color: white;
-    }
+        a:hover {
+            color: white;
+        }
 
     .tittle {
         padding: 2rem 2rem 0 2rem;

@@ -1,6 +1,7 @@
 import firebase from "../services/firebase";
+import { useRouter } from "next/router";
 import regions from "../data/regions.json";
-import searchStyles from "../styles//components/Search.module.scss";
+import searchStyles from "../styles/components/Search.module.scss";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { Container, Row, Col } from "react-bootstrap";
 import { useEffect, useState } from "react";
@@ -8,6 +9,7 @@ import Party from "../components/Party";
 import Spinner from "react-bootstrap/Spinner";
 
 const Partys: React.FC = () => {
+  const router = useRouter();
   const [teams, setTeams] = useState([]);
   const [region, setRegion] = useState("LAN");
 
@@ -20,6 +22,10 @@ const Partys: React.FC = () => {
       .orderBy("timestamp", "desc")
       .limit(15)
   );
+
+  const handleClick = () => {
+    router.push("/guide");
+  };
 
   const handleSelect = (value: string) => {
     setRegion(value);
@@ -36,6 +42,9 @@ const Partys: React.FC = () => {
   return (
     <Container>
       <h4 className="my-5 text-center"> GRUPOS DISPONIBLES </h4>
+      <p onClick={handleClick} className={searchStyles.guide__btn}>
+        Guía: <span> Como usar el buscador de grupos </span>
+      </p>
       <div className={searchStyles.search__field}>
         <p className="m-5">Ver: </p>
 

@@ -45,6 +45,17 @@
     }
 }
 
+.guide__btn {
+
+    font-size: 1.1rem;
+    padding-bottom: 1rem;
+    font-family: Roboto;
+    cursor: pointer;
+    text-decoration: underline;
+    color: variables.$secondary-color;
+
+}
+
 .region__selector {
     position: relative;
     display: inline-block;

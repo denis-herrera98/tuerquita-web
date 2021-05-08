@@ -1,0 +1,33 @@
+@use './variables.scss';
+
+.container {
+
+    font-family: Roboto;
+    padding-top: 3rem;
+
+    li {
+        padding-top: 2rem;
+        font-weight: bold;
+    }
+
+    ul {
+        padding-top: .5rem;
+    }
+
+    p {
+        padding-top: .5rem;
+    }
+
+    a:hover {
+        color: variables.$secondary-color;
+    }
+
+    a {
+        color: variables.$secondary-color;
+    }
+
+    .cmd__ad {
+        color: variables.$secondary-color;
+        cursor: pointer;
+    }
+}

@@ -27,7 +27,6 @@ const ManageParty: React.FC = () => {
           title: "Error...",
           icon: "error",
           text: "Lo sentimos, ocurrió un error",
-          showConfirmButton: false,
         });
         router.replace("/");
         return;
@@ -38,7 +37,6 @@ const ManageParty: React.FC = () => {
           title: "Error...",
           icon: "error",
           text: "Al parecer no eres el dueño del grupo",
-          showConfirmButton: false,
         });
         router.replace("/");
         return;
@@ -49,7 +47,6 @@ const ManageParty: React.FC = () => {
           title: "Grupo cerrado",
           icon: "error",
           text: "Trata creando un nuevo grupo",
-          showConfirmButton: false,
         });
         router.replace("/");
         return;
@@ -59,7 +56,6 @@ const ManageParty: React.FC = () => {
             title: "No cerrar la pestaña",
             icon: "info",
             text: "Si no tendras que crear el grupo de nuevo ",
-            showConfirmButton: false,
           });
           setShowMessage(false);
         }
@@ -69,6 +65,7 @@ const ManageParty: React.FC = () => {
         }
       }
     }
+
     fetchTeam();
   }, [id, discordid, dispatch, router, showMessage]);
 
