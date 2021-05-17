@@ -26,11 +26,21 @@
     justify-content: center;
     margin: 50px 0 50px 0;
 
+
+    .command__description {
+        padding-left: 20px;
+        font-size: 1.3rem;
+
+    }
+
+    .command__background {
+
+        background: variables.$msg-response;
+        border-radius: 25px;
+
     .command__label {
 
         height: 50px;
-        background: variables.$msg-response;
-        border-radius: 25px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -44,11 +54,8 @@
         }
     }
 
-    .command__description {
-        padding-left: 20px;
-        font-size: 1.3rem;
-
     }
+
 }
 
 
