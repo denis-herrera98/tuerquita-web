@@ -2,10 +2,12 @@ import Image from "next/image";
 import Command from "../components/Command";
 import homeStyles from "../styles/Home.module.scss";
 import { Row, Col, Container } from "react-bootstrap";
+import Logo from "../components/Logo";
 
 const Home: React.FC = () => {
   return (
     <>
+      <Logo />
       <div
         id="description__section"
         className={homeStyles.description__section}
