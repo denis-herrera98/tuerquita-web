@@ -1,0 +1,103 @@
+@use '../variables';
+
+.arrow__up {
+    margin-left: auto;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid variables.$secondary-color;
+    position: relative;
+    bottom: -5px;
+    cursor: pointer;
+}
+
+.arrow__down {
+    position: relative;
+    bottom: -5px;
+    margin-left: auto;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid variables.$secondary-color;
+    cursor: pointer;
+}
+
+.command-right {
+    margin-right: auto;
+}
+
+.command-left {
+    margin-left: auto;
+}
+
+.command-blur {
+    border-radius: 20px;
+}
+
+.commands-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+};
+
+@keyframes opacity {
+    to { opacity: 0.9}
+    from { opacity: 0}
+}
+
+.command {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem 2rem;
+    margin: 50px 0;
+    border: 1px solid white;
+    border-radius: 20px;
+
+
+    &__description {
+        padding-left: 20px;
+        font-size: 1.3rem;
+    }
+
+    &__command {
+        color: variables.$secondary-color;
+        margin-bottom: 0;
+    }
+
+    &__img {
+        margin-top: 2rem;
+        opacity: 0.9;
+        animation: opacity .5s linear;
+    }
+
+
+    &__background {
+
+        background: variables.$msg-response;
+        border-radius: 25px;
+
+        &__label {
+
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            p {
+                text-align: start;
+                font-size: 1.3rem;
+                font-family: Bungee Inline;
+                margin: 0 auto 0 1.5rem;
+
+            }
+        }
+
+    }
+
+}
+
+
