@@ -4,6 +4,7 @@ import homeStyles from "../styles/Home.module.scss";
 import { Row, Col, Container } from "react-bootstrap";
 import Logo from "../components/Logo";
 import { commands } from "../data/commands";
+import ToolFinderSection from "../components/ToolFinderSection";
 
 const Home: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const Home: React.FC = () => {
           <Logo />
         </div>
       </div>
+      <ToolFinderSection />
       <div id="commands__section" className={homeStyles.commands__section}>
         <Container>
           <div className={homeStyles.titles}>

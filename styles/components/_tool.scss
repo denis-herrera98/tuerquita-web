@@ -1,0 +1,28 @@
+@use '../variables';
+
+.finder {
+
+    min-height: 85vh;
+
+.video {
+    background: grey;
+    height: 500px;
+    width: 100%;
+}
+
+.finder-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+
+    a:last-child {
+        color: variables.$secondary-color;
+        align-self: flex-end;
+        cursor: pointer;
+        margin-bottom: 2rem;
+    }
+
+}
+}
+

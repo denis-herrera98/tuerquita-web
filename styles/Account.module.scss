@@ -1,10 +1,10 @@
 @use './variables.scss';
 
 .container {
+    min-height: calc(100vh - 65px);
     padding-top: 3rem;
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
 
     .search__field {

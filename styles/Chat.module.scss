@@ -29,7 +29,7 @@
     .left__column {
 
         padding-top: 2rem;
-        background: variables.$primary-color;
+        background: variables.$chat-column;
         width: 415px;
         display: flex;
         flex-direction: column;
@@ -100,7 +100,7 @@
         .chat__background {
             display: flex;
             flex: 1;
-            background: variables.$primary-color;
+            background: variables.$chat-background;
             border-radius: 40px;
             flex-direction: column;
 
