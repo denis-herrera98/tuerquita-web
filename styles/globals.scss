@@ -1,3 +1,4 @@
+@forward './components/';
 @use './variables';
 @import "~bootstrap/scss/bootstrap";
 @import '~@sweetalert2/theme-borderless/borderless.scss';
@@ -16,33 +17,45 @@ body {
     padding: 0;
     margin: 0;
     font-size: 16px;
-    font-family: Bungee Inline, Roboto;
+    font-family:  Roboto, Bungee Inline;
     background: variables.$base-color;
     color: white;
     text-rendering: optimizeLegibility;
 
+    ::-webkit-scrollbar-thumb {
+        background-color: lighten(variables.$primary-color, 5% );
+        border-radius: 20px;       /* roundness of the scroll thumb */
+        border: 3px solid variables.$primary-color;  /* creates padding around scroll thumb */
+    }
 
-::-webkit-scrollbar-thumb {
-  background-color: lighten(variables.$primary-color, 5% );
-
-  border-radius: 20px;       /* roundness of the scroll thumb */
-  border: 3px solid variables.$primary-color;  /* creates padding around scroll thumb */
+    ::-webkit-scrollbar-track {
+        background: darken(variables.$primary-color, 10% );        /* color of the tracking area */
+    }
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
 }
 
-::-webkit-scrollbar-track {
-  background: darken(variables.$primary-color, 10% );        /* color of the tracking area */
-}
-::-webkit-scrollbar {
-  width: 12px;
-}
-}
-
-a {
+a, p, span {
     color: inherit;
+    font-family: Roboto;
     text-decoration: none;
+}
+
+p {
+    font-size: 18px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: Bungee Inline;
+
 }
 
 * {
     box-sizing: border-box;
 }
 
+.section {
+    min-height: calc(100vh - 65px);
+    padding-top: 3rem;
+}

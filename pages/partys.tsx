@@ -41,50 +41,55 @@ const Partys: React.FC = () => {
 
   return (
     <Container>
-      <h4 className="my-5 text-center"> GRUPOS DISPONIBLES </h4>
-      <p onClick={handleClick} className={searchStyles.guide__btn}>
-        Guía: <span> Como usar el buscador de grupos </span>
-      </p>
-      <div className={searchStyles.search__field}>
-        <p className="m-5">Región: </p>
+      <div className="section">
+        <h4 className="text-center"> GRUPOS DISPONIBLES </h4>
+        <p onClick={handleClick} className={searchStyles.guide__btn}>
+          Guía: <span> Como usar el buscador de grupos </span>
+        </p>
+        <div className={searchStyles.search__field}>
+          <p className="m-5">Región: </p>
 
-        <div className={`${searchStyles.region__selector}`}>
-          <div className={`${searchStyles.dropbtn}`}>
-            <p> {region} </p>
-            <div
-              id="dropdown__content"
-              className={`${searchStyles.dropdown__content}`}
-            >
-              {Object.keys(regions).map((value: string, i) => {
-                return (
-                  <a key={i} onClick={() => handleSelect(value)}>
-                    {value}
-                  </a>
-                );
-              })}
+          <div className={`${searchStyles.region__selector}`}>
+            <div className={`${searchStyles.dropbtn}`}>
+              <p> {region} </p>
+              <div
+                id="dropdown__content"
+                className={`${searchStyles.dropdown__content}`}
+              >
+                {Object.keys(regions).map((value: string, i) => {
+                  return (
+                    <a key={i} onClick={() => handleSelect(value)}>
+                      {value}
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
+        <Row>
+          {error ? (
+            <h4 className="text-center">
+              {" "}
+              Lo sentimos, ha ocurrido un error...
+            </h4>
+          ) : loading ? (
+            <Spinner className="m-auto mt-5 " animation="border" />
+          ) : querySnapshot.empty ? (
+            <p className="text-center mt-5">
+              No hay grupos disponibles en este momento
+            </p>
+          ) : (
+            teams.map((team, index) => {
+              return (
+                <Col key={index} lg={6}>
+                  <Party team={team} />
+                </Col>
+              );
+            })
+          )}
+        </Row>
       </div>
-      <Row>
-        {error ? (
-          <h4 className="text-center"> Lo sentimos, ha ocurrido un error...</h4>
-        ) : loading ? (
-          <Spinner className="m-auto mt-5 " animation="border" />
-        ) : querySnapshot.empty ? (
-          <p className="text-center mt-5">
-            No hay grupos disponibles en este momento
-          </p>
-        ) : (
-          teams.map((team, index) => {
-            return (
-              <Col key={index} lg={6}>
-                <Party team={team} />
-              </Col>
-            );
-          })
-        )}
-      </Row>
     </Container>
   );
 };

@@ -1,13 +1,14 @@
-$base-color:  #233040;
+$base-color: linear-gradient(140.24deg, #092D45 0%, #071B29 100%);
 $primary-color: #2A3747;
 $secondary-color: #D65A31;
-$nav-color: darken($base-color, 7%);
-$msg-response: #526274;
-$msg-sent: #526274;
-$text-field-color: #324052;
+$nav-color: linear-gradient(269.99deg, #062031 0%, rgba(4, 97, 159, 0) 99.63%);
+$msg-sent: #113955;
+$msg-response: #092C43;
+$text-field-color: $msg-response;
 $error-color: #B41B1B;
 $correct-color: #44A642;
-$summoner-background: #2A3A4E;
-$row-grid-dark: #334964;
+$summoner-background: #092C43;
+$row-grid-dark: #113955;
 $row-grid-light: $summoner-background;
-
+$chat-column: #082335;
+$chat-background: #0A2639;

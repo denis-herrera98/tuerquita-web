@@ -21,6 +21,7 @@ const Party: React.FC = () => {
   const { id: partyId } = router.query;
 
   const dispatch = useAppDispatch();
+
   const [snapshot, loading, error] = useDocument(
     firebase.firestore().doc(`lkfteam/${partyId}`)
   );
