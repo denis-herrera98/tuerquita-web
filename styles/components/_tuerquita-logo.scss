@@ -10,8 +10,8 @@
     animation-play-state: running; 
     animation-duration: 4s;
     clip-path: polygon(48% 21%, 52% 15%, 64% 18%, 65% 25%, 71% 30%, 79% 30%, 84% 40%, 79% 47%, 79% 53%, 84% 59%, 79% 70%, 70% 70%, 65% 74%, 64% 82%, 52% 85%, 47% 77%, 42% 76%, 34% 81%, 24% 73%, 27% 65%, 24% 59%, 16% 56%, 16% 44%, 24% 41%, 27% 35%, 24% 27%, 34% 19%, 41% 23%);
-    height: 500px;
-    width: 500px;
+    height: 100%;
+    width: 100%;
     background: #0D0E0F;
     z-index: 2;
     display: flex;
@@ -30,7 +30,6 @@
         clip-path: polygon(53% 35%, 57% 36%, 49% 45%, 54% 46%, 47% 53%, 51% 54%, 40.00% 63.47%, 40.07% 63.33%, 46% 55%, 43% 54%, 48% 48%, 42% 46%);
         height: 100%;
         width: 100%; 
-        cursor: pointer;
     }
 
     .lighten_right {
@@ -40,11 +39,9 @@
         background: #FFA102;
         height: 100%;
         width: 100%; 
-        cursor: pointer;
     }
 
     .center {
-        cursor: pointer;
         position: absolute;
         background: #FFFFFF;
         height: 25%;

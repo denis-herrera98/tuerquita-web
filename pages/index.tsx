@@ -17,8 +17,8 @@ const Home: React.FC = () => {
           <h4>Tuerquita</h4>
           <h4>Bot de League of Legends</h4>
         </div>
-        <div>
-          <Logo />
+        <div className="logo-container">
+          <Logo size={500} />
         </div>
       </div>
       <ToolFinderSection />

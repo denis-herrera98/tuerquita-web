@@ -1,13 +1,11 @@
+import Image from "next/image";
 import { Container, Col, Row } from "react-bootstrap";
+import homeStyles from "../styles/Home.module.scss";
 
 const ToolFinderSection = (): JSX.Element => {
   return (
     <Container>
       <div className="finder">
-        <video autoPlay loop muted>
-          <source src="https://www.youtube.com/watch?v=VT-_PsxYbec" />
-        </video>
-
         <Row>
           <Col lg={5}>
             <div className="finder-description">
@@ -26,7 +24,14 @@ const ToolFinderSection = (): JSX.Element => {
           </Col>
 
           <Col lg={7}>
-            <div className="video"> as</div>
+            <div>
+              <Image
+                src="/party_gif.gif"
+                alt="Tuerquita icon"
+                width="802"
+                height="590"
+              />
+            </div>
           </Col>
         </Row>
       </div>

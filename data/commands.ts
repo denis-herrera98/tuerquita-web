@@ -15,16 +15,7 @@ export const commands: Command[] = [
     label: "t! delete-region",
     description: "Elimina la región del servidor de discord",
   },
-  {
-    label: "t! regions",
-    description: "Muestra todas las regiones",
-    showTriangle: true,
-    img: {
-      urlImage: "/index/regions.png",
-      widthImg: 259,
-      heightImg: 660,
-    },
-  },
+
   {
     label: "t! add",
     description:
@@ -33,6 +24,16 @@ export const commands: Command[] = [
       urlImage: "/index/add.png",
       widthImg: 416,
       heightImg: 795,
+    },
+  },
+  {
+    label: "t! regions",
+    description: "Muestra todas las regiones",
+    showTriangle: true,
+    img: {
+      urlImage: "/index/regions.png",
+      widthImg: 259,
+      heightImg: 660,
     },
   },
   {

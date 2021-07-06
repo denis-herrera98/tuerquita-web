@@ -2,6 +2,7 @@ import navStyles from "../styles/Nav.module.scss";
 import Link from "next/link";
 import { Link as ScrollLink } from "react-scroll";
 import { useRouter } from "next/router";
+import Logo from "./Logo";
 
 const Nav: React.FC = () => {
   const router = useRouter();
@@ -11,7 +12,12 @@ const Nav: React.FC = () => {
       <ul>
         <li>
           <Link href="/">
-            <a>TUERQUITA</a>
+            <a className="d-flex align-items-center">
+              <span>
+                <Logo size={50} />
+              </span>
+              TUERQUITA
+            </a>
           </Link>
         </li>
 
